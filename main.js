@@ -82,17 +82,24 @@ function generateArtTile(artTile) {
       parentSection = -1;
     }
     const newGridTemplate = gridTemplate.map((_, index) => index === parentSection ? '2.75fr' : '1fr').join(' ');
-    columnsContainer.style.gridTemplateColumns = newGridTemplate;
 
     // scroll to the element that was clicked (if it's now out of view)
-    let intervalCounter = 0 // keep track how long we've been scrolling
-    let interval = setInterval(() => {
+    let shouldScroll = true;
+    event.target.scrollIntoView({ behavior: "smooth", block: "center" });
+    function scroll() {
       event.target.scrollIntoView({ behavior: "auto", block: "center" });
-      intervalCounter += 5;
-      if (intervalCounter >= 800) { // how long our animation is
-        clearInterval(interval);
+      if (shouldScroll) {
+        window.requestAnimationFrame(scroll);
       }
-    }, 5);
+    }
+
+    // wait until auto smooth scroll if finished, then scroll with zoomed element
+    setTimeout(() => {
+      columnsContainer.style.gridTemplateColumns = newGridTemplate;
+      window.requestAnimationFrame(scroll)
+    }, 200);
+    setTimeout(() => { shouldScroll = false }, 1000);
+
   }
   artTileElements.push(artTileElement);
 }
