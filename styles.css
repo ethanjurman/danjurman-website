@@ -6,8 +6,8 @@ body {
 }
 
 footer,
-a,
-.art-publication {
+a, about-block,
+art-publication {
   font-family: "Catamaran", sans-serif;
 }
 
@@ -86,12 +86,23 @@ art-tile > img {
   max-width: 100%;
   margin-bottom: 4px;
 }
-.art-title {
+
+art-title {
+  display: block;
   margin: 6px 0px 4px 0px;
   font-weight: 700;
 }
-.art-publication {
+
+art-publication {
+  display: block;
   font-size: 14px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  line-height: 0.2em;
+  margin-bottom: 2em;
 }
 
 footer {

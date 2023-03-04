@@ -16,8 +16,12 @@ client.getEntry(aboutPageEntry)
 
 function generateAboutBlock(aboutEntry) {
   const aboutElement = document.createElement('about-content')
-  const aboutVideoSrc = entry.fileds.media.fields.file.url;
-  const aboutDescriptionHtml = documentToHtmlString(entry.fields.content.content);
-  // processArtTiles()
+  const aboutVideoSrc = aboutEntry.fields.media.fields.file.url;
+  const aboutDescriptionHtml = documentToHtmlString(aboutEntry.fields.content);
+
+  aboutElement.innerHTML = `
+    <video src=${aboutVideoSrc} playsinline='' autoplay='' loop='' muted=''></video>
+    ${aboutDescriptionHtml}
+  `
   document.querySelector('about-block').appendChild(aboutElement)
 }

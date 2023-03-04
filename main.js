@@ -59,8 +59,8 @@ function generateArtTile(artTile, index) {
   const mediaElement = generateMediaElement(media);
   artTileElement.innerHTML = `
 		${mediaElement.outerHTML}
-		<div class="art-title">${title}</div>
-		<div class="art-publication">${publication}</div>	
+		<art-title>${title}</art-title>
+		<art-publication>${publication}</art-publication>
 	`
   const numberOfTiles = document.querySelectorAll('tile-container').length;
   document.querySelector(`tile-container[section="${index % numberOfTiles}"]`).appendChild(artTileElement);
