@@ -1,20 +1,27 @@
-* {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-}
+/* Set fonts */
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;700&family=Gloock&display=swap");
 
 body {
+  font-family: "Gloock", serif;
+}
+
+footer,
+a,
+.art-publication {
+  font-family: "Catamaran", sans-serif;
+}
+
+/* Component Styles */
+body {
   margin: 0px;
+  position: relative;
+  min-height: 100vh;
 }
 
 a {
   color: black;
   text-decoration: none;
-  padding: 4px 0px;
   margin: 0px 4px;
-}
-
-.active-link {
-  border-bottom: 1px solid;
 }
 
 .nav {
@@ -30,7 +37,7 @@ a {
 .nav-title {
   display: inline-block;
   font-size: 30;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
@@ -38,8 +45,48 @@ a {
   display: inline-block;
   padding-top: 8px;
   font-size: 14;
-  font-weight: 400;
   text-transform: uppercase;
   position: absolute;
   right: 14px;
+}
+
+.active-link {
+  border-bottom: 1px solid;
+  font-weight: 700;
+}
+
+tile-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+art-tile {
+  max-width: 45%;
+  margin: 10px;
+}
+art-tile > video,
+art-tile > img {
+  max-width: 100%;
+}
+
+.img-placeholder {
+  background: gray;
+  width: 500px;
+  height: 250px;
+  max-width: 100%;
+  margin-bottom: 4px;
+}
+.art-title {
+  margin-bottom: 4px;
+}
+.art-publication {
+  font-size: 14px;
+}
+
+footer {
+  position: absolute;
+  font-size: 14px;
+  width: 100%;
+  bottom: 4px;
+  text-align: center;
 }
