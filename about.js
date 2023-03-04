@@ -10,7 +10,7 @@ const aboutPageEntry = '2Mpw557fLAYflFcO16fLh9'
 client.getEntry(aboutPageEntry)
   .then((entry) => {
     generateAboutBlock(entry);
-    adjustOverlay();
+    setTimeout(adjustOverlay, 250);
   })
   .catch(console.error)
 
@@ -20,27 +20,31 @@ function generateAboutBlock(aboutEntry) {
   const aboutDescriptionHtml = documentToHtmlString(aboutEntry.fields.content);
 
   aboutElement.innerHTML = `
-    <video src=${aboutVideoSrc} playsinline='' autoplay='' loop='' muted=''></video>
+    <video-container>
+      <video src=${aboutVideoSrc} id="about-video" playsinline='' autoplay='' loop='' muted=''></video>
+    </video-container>
     <about-description>${aboutDescriptionHtml}</about-description>
   `
   document.querySelector('about-block').appendChild(aboutElement)
 }
 
 function adjustOverlay() {
-  const aboutDescription = document.querySelector('about-description');
-  const isOverlayed = aboutDescription.style.position === 'absolute';
+  const descriptionElement = document.querySelector('about-description');
+  const videoElement = document.querySelector('video');
+  const customCssVariablesElement = document.querySelector('custom-css-variables');
 
-  // page too small
-  if (isOverlayed && window.innerWidth < 620) {
-    aboutDescription.style.position = 'relative';
-    aboutDescription.style.background = 'none';
+  const descriptionHeight = descriptionElement.clientHeight
+  const videoHeight = videoElement.clientHeight;
 
-  }
-  // page big enough for overlay
-  if (!isOverlayed && window.innerWidth >= 620) {
-    aboutDescription.style.position = 'absolute';
-    aboutDescription.style.background = '#b0a98a4d';
-
+  if (descriptionHeight > videoHeight) {
+    // description content can NOT be inside video element
+    descriptionElement.style.position = 'relative';
+    descriptionElement.style.background = 'none';
+    customCssVariablesElement.style.setProperty('--video-overlay', 'none');
+  } else if (descriptionHeight <= videoHeight) {
+    // description content can be inside video element
+    descriptionElement.style.position = 'absolute';
+    customCssVariablesElement.style.setProperty('--video-overlay', '#ffffff4d');
   }
 }
 
