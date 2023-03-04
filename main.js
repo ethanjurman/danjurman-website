@@ -15,7 +15,7 @@ client.getEntry(mainPageEntry)
   .then((entry) => {
     // create all the art-tile elements and push them to `artTileElements`
     // by doing this first, when we append later, the elements will just move to where they need to go
-    [...entry.fields.artTiles, ...entry.fields.artTiles, ...entry.fields.artTiles].forEach(generateArtTile)
+    entry.fields.artTiles.forEach(generateArtTile)
     processArtTiles()
   })
   .catch(console.error)
@@ -70,41 +70,12 @@ function generateArtTile(artTile) {
 	`
 
   // click action to make an image (and really, the entire column) larger
-  artTileElement.onclick = (event) => {
-    // determine what column we are in, and set that width to be wider
-    let parentSection = parseInt(event.target.parentElement.parentElement.getAttribute('section'));
-    const columnsContainer = document.querySelector('columns-container');
-    const gridTemplate = columnsContainer.style.gridTemplateColumns.split(' ');
-    // check if we were already wide (in which case, we should shrink)
-    const alreadyWide = gridTemplate[parentSection] === '2.75fr'
-    if (alreadyWide) {
-      // set no section to be wide
-      parentSection = -1;
-    }
-    const newGridTemplate = gridTemplate.map((_, index) => index === parentSection ? '2.75fr' : '1fr').join(' ');
+  artTileElement.onclick = (event) => { zoomIn(event.target) };
 
-    // scroll to the element that was clicked (if it's now out of view)
-    let shouldScroll = true;
-    event.target.scrollIntoView({ behavior: "smooth", block: "center" });
-    function scroll() {
-      event.target.scrollIntoView({ behavior: "auto", block: "center" });
-      if (shouldScroll) {
-        window.requestAnimationFrame(scroll);
-      }
-    }
-
-    // wait until auto smooth scroll if finished, then scroll with zoomed element
-    setTimeout(() => {
-      columnsContainer.style.gridTemplateColumns = newGridTemplate;
-      window.requestAnimationFrame(scroll)
-    }, 200);
-    setTimeout(() => { shouldScroll = false }, 1000);
-
-  }
   // disable right click on art-tiles
   artTileElement.addEventListener("contextmenu", (event) => {
     event.preventDefault();
- });
+  });
   artTileElements.push(artTileElement);
 }
 
