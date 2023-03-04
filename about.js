@@ -9,7 +9,6 @@ const client = contentful.createClient({
 const aboutPageEntry = '2Mpw557fLAYflFcO16fLh9'
 client.getEntry(aboutPageEntry)
   .then((entry) => {
-    console.log(entry);
     generateAboutBlock(entry);
   })
   .catch(console.error)

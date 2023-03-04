@@ -7,6 +7,7 @@ const client = contentful.createClient({
 
 const artTileElements = [];
 let columns = 0;
+let largeColumn = null;
 
 // pull the entry for the main page (you can find this in contentful, info panel)
 const mainPageEntry = '2FDoqwaVPKZiumNtdH86Ad'
@@ -67,6 +68,32 @@ function generateArtTile(artTile) {
 		<art-title>${title}</art-title>
 		<art-publication>${publication}</art-publication>
 	`
+
+  // click action to make an image (and really, the entire column) larger
+  artTileElement.onclick = (event) => {
+    // determine what column we are in, and set that width to be wider
+    let parentSection = parseInt(event.target.parentElement.parentElement.getAttribute('section'));
+    const columnsContainer = document.querySelector('columns-container');
+    const gridTemplate = columnsContainer.style.gridTemplateColumns.split(' ');
+    // check if we were already wide (in which case, we should shrink)
+    const alreadyWide = gridTemplate[parentSection] === '2.75fr'
+    if (alreadyWide) {
+      // set no section to be wide
+      parentSection = -1
+    }
+    const newGridTemplate = gridTemplate.map((_, index) => index === parentSection ? '2.75fr' : '1fr').join(' ');
+    columnsContainer.style.gridTemplateColumns = newGridTemplate;
+
+    // scroll to the element that was clicked (if it's now out of view)
+    let intervalCounter = 0 // keep track how long we've been scrolling
+    let interval = setInterval(() => {
+      event.target.scrollIntoView({ behavior: "auto", block: "center" });
+      intervalCounter += 5
+      if (intervalCounter >= 800) { // how long our animation is
+        clearInterval(interval)
+      }
+    }, 5)
+  }
   artTileElements.push(artTileElement);
 }
 
