@@ -5,14 +5,16 @@ const client = contentful.createClient({
   accessToken: 'if9Vw15EoyMc4a-Js1-gztNYSIwTnPnEsE7OQaZEJoM'
 })
 
-const artTiles = [];
+const artTileElements = [];
 let columns = 0;
 
 // pull the entry for the main page (you can find this in contentful, info panel)
 const mainPageEntry = '2FDoqwaVPKZiumNtdH86Ad'
 client.getEntry(mainPageEntry)
   .then((entry) => {
-    artTiles.push(...entry.fields.artTiles, ...entry.fields.artTiles, ...entry.fields.artTiles);
+    // create all the art-tile elements and push them to `artTileElements`
+    // by doing this first, when we append later, the elements will just move to where they need to go
+    [...entry.fields.artTiles, ...entry.fields.artTiles, ...entry.fields.artTiles].forEach(generateArtTile)
     processArtTiles()
   })
   .catch(console.error)
@@ -45,14 +47,17 @@ function generateMediaElement(media) {
   console.warn(`unknown filetype!`, contentType)
 }
 
-// function to go through all the loaded art-tile objects (from contentful)
+// function to go through all the loaded art-tile elements (from contentful)
 // and add then to the page
 function processArtTiles() {
-  artTiles.forEach(generateArtTile)
+  artTileElements.forEach((artTileElement, index) => {
+    const numberOfTiles = document.querySelectorAll('tile-container').length;
+    document.querySelector(`tile-container[section="${index % numberOfTiles}"]`).appendChild(artTileElement);
+  })
 }
 
-// function to generate a single art tile, and add it to the page
-function generateArtTile(artTile, index) {
+// function to generate a single art tile, and save it to our list of artTileElements
+function generateArtTile(artTile) {
   const { title, media, publication } = artTile.fields;
   // create tile
   const artTileElement = document.createElement('art-tile');
@@ -62,8 +67,7 @@ function generateArtTile(artTile, index) {
 		<art-title>${title}</art-title>
 		<art-publication>${publication}</art-publication>
 	`
-  const numberOfTiles = document.querySelectorAll('tile-container').length;
-  document.querySelector(`tile-container[section="${index % numberOfTiles}"]`).appendChild(artTileElement);
+  artTileElements.push(artTileElement);
 }
 
 // function to recreate the tile containers based on the width of the page
@@ -81,6 +85,10 @@ function createTileContainers(numberOfTiles) {
   }
 }
 
+/* We are using a resize observer here to listen for changes in the window width.
+ * If we see that we should add/remove columns, we blow away the old ones, and create new columns.
+ * We do this (as opposed to more traditional methods) because of the staggered column layout
+ */
 const resizeObserver = new ResizeObserver((entries) => {
   // determine how many tile containers we should make
   const newNumberOfColumns = Math.min(Math.ceil(window.innerWidth / 600), 4);
