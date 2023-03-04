@@ -56,15 +56,13 @@ a {
 }
 
 columns-container {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
 }
 
 tile-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  max-width: 45%;
 }
 
 art-tile {
@@ -83,7 +81,8 @@ art-tile > img {
   margin-bottom: 4px;
 }
 .art-title {
-  margin-bottom: 4px;
+  margin: 6px 0px 4px 0px;
+  font-weight: 700;
 }
 .art-publication {
   font-size: 14px;

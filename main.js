@@ -6,13 +6,12 @@ const client = contentful.createClient({
 })
 
 const artTiles = [];
-let columns = 2;
+let columns = 0;
 
 // pull the entry for the main page (you can find this in contentful, info panel)
 const mainPageEntry = '2FDoqwaVPKZiumNtdH86Ad'
 client.getEntry(mainPageEntry)
   .then((entry) => {
-    console.log(entry);
     artTiles.push(...entry.fields.artTiles, ...entry.fields.artTiles, ...entry.fields.artTiles);
     processArtTiles()
   })
@@ -54,9 +53,7 @@ function processArtTiles() {
 
 // function to generate a single art tile, and add it to the page
 function generateArtTile(artTile, index) {
-  console.log('Generating art tile');
   const { title, media, publication } = artTile.fields;
-  console.log({ title, media, publication });
   // create tile
   const artTileElement = document.createElement('art-tile');
   const mediaElement = generateMediaElement(media);
@@ -74,6 +71,7 @@ function createTileContainers(numberOfTiles) {
   // clean up previous tile containers
   const parentContainer = document.querySelector('columns-container');
   parentContainer.innerHTML = ''
+  parentContainer.style.gridTemplateColumns = '1fr '.repeat(numberOfTiles)
 
   // create new tile containers
   for (let i = 0; i < numberOfTiles; i++) {
@@ -84,9 +82,8 @@ function createTileContainers(numberOfTiles) {
 }
 
 const resizeObserver = new ResizeObserver((entries) => {
-  console.log(window.innerWidth);
   // determine how many tile containers we should make
-  const newNumberOfColumns = Math.min(Math.ceil(window.innerWidth / 600), 3);
+  const newNumberOfColumns = Math.min(Math.ceil(window.innerWidth / 600), 4);
   if (columns !== newNumberOfColumns) {
     // make tile containers
     createTileContainers(newNumberOfColumns)
