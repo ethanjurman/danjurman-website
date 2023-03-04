@@ -101,6 +101,10 @@ function generateArtTile(artTile) {
     setTimeout(() => { shouldScroll = false }, 1000);
 
   }
+  // disable right click on art-tiles
+  artTileElement.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+ });
   artTileElements.push(artTileElement);
 }
 
