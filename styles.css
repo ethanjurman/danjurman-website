@@ -74,6 +74,7 @@ about-block {
 
 art-tile {
   margin: 10px;
+  cursor: pointer;
 }
 art-tile > video,
 art-tile > img {
