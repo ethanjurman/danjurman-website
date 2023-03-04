@@ -63,6 +63,12 @@ tile-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  margin-bottom: 80px;
+}
+
+about-block {
+  display: flex;
+  margin-bottom: 80px;
 }
 
 art-tile {
