@@ -125,7 +125,7 @@ function createTileContainers(numberOfTiles) {
  */
 const resizeObserver = new ResizeObserver((entries) => {
   // determine how many tile containers we should make
-  const newNumberOfColumns = Math.min(Math.ceil(window.innerWidth / 600), 4);
+  const newNumberOfColumns = Math.min(Math.ceil(window.innerWidth / 600), 3);
   if (columns !== newNumberOfColumns) {
     // make tile containers
     createTileContainers(newNumberOfColumns)
