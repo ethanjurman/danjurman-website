@@ -76,6 +76,8 @@ function generateArtTile(artTile) {
   artTileElement.addEventListener("contextmenu", (event) => {
     event.preventDefault();
   });
+  artTileElement.ondragstart = function () { return false; };
+
   artTileElements.push(artTileElement);
 }
 
