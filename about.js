@@ -10,7 +10,6 @@ const aboutPageEntry = '2Mpw557fLAYflFcO16fLh9'
 client.getEntry(aboutPageEntry)
   .then((entry) => {
     generateAboutBlock(entry);
-    setTimeout(adjustOverlay, 250);
   })
   .catch(console.error)
 
@@ -27,25 +26,3 @@ function generateAboutBlock(aboutEntry) {
   `
   document.querySelector('about-block').appendChild(aboutElement)
 }
-
-function adjustOverlay() {
-  const descriptionElement = document.querySelector('about-description');
-  const videoElement = document.querySelector('video');
-  const customCssVariablesElement = document.querySelector('custom-css-variables');
-
-  const descriptionHeight = descriptionElement.clientHeight
-  const videoHeight = videoElement.clientHeight;
-
-  if (descriptionHeight > videoHeight) {
-    // description content can NOT be inside video element
-    descriptionElement.style.position = 'relative';
-    descriptionElement.style.background = 'none';
-    customCssVariablesElement.style.setProperty('--video-overlay', 'none');
-  } else if (descriptionHeight <= videoHeight) {
-    // description content can be inside video element
-    descriptionElement.style.position = 'absolute';
-    customCssVariablesElement.style.setProperty('--video-overlay', '#ffffff4d');
-  }
-}
-
-addEventListener("resize", adjustOverlay);
