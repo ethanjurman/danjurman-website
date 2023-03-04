@@ -31,9 +31,10 @@ a {
 }
 
 .nav {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 5px;
-  height: 30px;
   padding-bottom: 10px;
   border-bottom: 2px solid;
   padding-left: 14px;
@@ -52,8 +53,6 @@ a {
   padding-top: 8px;
   font-size: 14;
   text-transform: uppercase;
-  position: absolute;
-  right: 14px;
 }
 
 .active-link {
