@@ -1,0 +1,45 @@
+* {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  margin: 0px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  padding: 4px 0px;
+  margin: 0px 4px;
+}
+
+.active-link {
+  border-bottom: 1px solid;
+}
+
+.nav {
+  display: block;
+  padding-top: 5px;
+  height: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.nav-title {
+  display: inline-block;
+  font-size: 30;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: inline-block;
+  padding-top: 8px;
+  font-size: 14;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: absolute;
+  right: 14px;
+}
