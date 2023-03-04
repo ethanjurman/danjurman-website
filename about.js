@@ -10,6 +10,7 @@ const aboutPageEntry = '2Mpw557fLAYflFcO16fLh9'
 client.getEntry(aboutPageEntry)
   .then((entry) => {
     generateAboutBlock(entry);
+    adjustOverlay();
   })
   .catch(console.error)
 
@@ -20,7 +21,27 @@ function generateAboutBlock(aboutEntry) {
 
   aboutElement.innerHTML = `
     <video src=${aboutVideoSrc} playsinline='' autoplay='' loop='' muted=''></video>
-    ${aboutDescriptionHtml}
+    <about-description>${aboutDescriptionHtml}</about-description>
   `
   document.querySelector('about-block').appendChild(aboutElement)
 }
+
+function adjustOverlay() {
+  const aboutDescription = document.querySelector('about-description');
+  const isOverlayed = aboutDescription.style.position === 'absolute';
+
+  // page too small
+  if (isOverlayed && window.innerWidth < 620) {
+    aboutDescription.style.position = 'relative';
+    aboutDescription.style.background = 'none';
+
+  }
+  // page big enough for overlay
+  if (!isOverlayed && window.innerWidth >= 620) {
+    aboutDescription.style.position = 'absolute';
+    aboutDescription.style.background = '#b0a98a4d';
+
+  }
+}
+
+addEventListener("resize", adjustOverlay);

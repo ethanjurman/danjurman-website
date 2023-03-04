@@ -79,7 +79,7 @@ function generateArtTile(artTile) {
     const alreadyWide = gridTemplate[parentSection] === '2.75fr'
     if (alreadyWide) {
       // set no section to be wide
-      parentSection = -1
+      parentSection = -1;
     }
     const newGridTemplate = gridTemplate.map((_, index) => index === parentSection ? '2.75fr' : '1fr').join(' ');
     columnsContainer.style.gridTemplateColumns = newGridTemplate;
@@ -88,11 +88,11 @@ function generateArtTile(artTile) {
     let intervalCounter = 0 // keep track how long we've been scrolling
     let interval = setInterval(() => {
       event.target.scrollIntoView({ behavior: "auto", block: "center" });
-      intervalCounter += 5
+      intervalCounter += 5;
       if (intervalCounter >= 800) { // how long our animation is
-        clearInterval(interval)
+        clearInterval(interval);
       }
-    }, 5)
+    }, 5);
   }
   artTileElements.push(artTileElement);
 }

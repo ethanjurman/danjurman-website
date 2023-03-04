@@ -6,7 +6,8 @@ body {
 }
 
 footer,
-a, about-block,
+a,
+about-block,
 art-publication {
   font-family: "Catamaran", sans-serif;
 }
@@ -68,8 +69,30 @@ tile-container {
 }
 
 about-block {
-  display: flex;
   margin-bottom: 80px;
+}
+
+about-content {
+  display: block;
+  margin: 20px auto;
+  width: calc(100% - 80px);
+  max-width: 800px;
+  position: relative;
+}
+
+about-content > video {
+  width: 100%;
+}
+
+about-description {
+  position: absolute;
+  display: block;
+  padding-left: 20px;
+  font-weight: 700;
+  top: 0px;
+  width: calc(100% - 20px);
+  height: 100%;
+  background: #b0a98a4d;
 }
 
 art-tile {
