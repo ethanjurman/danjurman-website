@@ -1,15 +1,12 @@
 /* Set fonts */
-@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;700&family=Gloock&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo&family=Archivo+Black&display=swap");
 
 body {
-  font-family: "Gloock", serif;
+  font-family: "Archivo", sans-serif;
 }
 
-footer,
-a,
-about-block,
-art-publication {
-  font-family: "Catamaran", sans-serif;
+art-title {
+  font-family: "Archivo Black", sans-serif;
 }
 
 /* Component Styles */
@@ -104,7 +101,6 @@ art-tile > img {
 art-title {
   display: block;
   margin: 6px 0px 4px 0px;
-  font-weight: 700;
 }
 
 art-publication {
