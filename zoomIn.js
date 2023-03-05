@@ -4,6 +4,9 @@ function zoomIn(target) {
   }
 
   // reset all styles
+  document.querySelectorAll("tile-column").forEach((tileElement) => {
+    tileElement.style.flexDirection = "column";
+  })
   document.querySelectorAll("art-tile").forEach((childElement) => {
     childElement.style.width = "100%";
     childElement.style.boxShadow = "0px 0px 0px black";
@@ -42,13 +45,7 @@ function zoomIn(target) {
     document.querySelectorAll("tile-column")[
       parentSection
     ].style.flexDirection = "row";
-    document.querySelectorAll("tile-column")[
-      parentSection
-    ].style.justifyContent = "space-between";
 
-    const previousChildren = [];
-    const nextChildren = [];
-    let isProcessingPreviousChildren = true;
     [...target.parentElement.parentElement.children].forEach((child) => {
       if (child.tagName !== "ART-TILE") {
         return;
@@ -61,10 +58,6 @@ function zoomIn(target) {
         child.style.width = "calc(50% - 20px)";
       }
     });
-    // [...nextChildren, ...previousChildren].forEach((childElement) => { childElement.style.width = "calc(50% - 20px)" });
-  } else {
-    console.log("resize back");
-    // document.querySelectorAll('art-tile').forEach((childElement) => { childElement.style.width = "100%" });
   }
 
   // scroll to the element that was clicked (if it's now out of view)
@@ -98,35 +91,4 @@ function zoomIn(target) {
   if (parentSection === -1) {
     resetHash();
   }
-
-  // move elements into the top and bottom subcontainers
-  // first, determine what elements need to be moved
-  // const previousChildren = [];
-  // const nextChildren = [];
-  // let isProcessingPreviousChildren = true;
-  // [...target.parentElement.parentElement.children].forEach(child => {
-  //   if (child.tagName !== 'ART-TILE') {
-  //     return;
-  //   }
-  //   if (child === target.parentElement) {
-  //     isProcessingPreviousChildren = false
-  //     return;
-  //   }
-  //   if (isProcessingPreviousChildren) {
-  //     previousChildren.push(child);
-  //   } else {
-  //     nextChildren.push(child);
-  //   }
-  // });
-
-  // // move elements above us to the top-subcontainer
-  // previousChildren.forEach((artTile, index) => {
-  //   const topContainer = document.querySelector(`tile-column[section="${parentSection}"] sub-columns-container[section="top"]`);
-  //   topContainer.querySelectorAll('sub-tile-column')[index % 2].appendChild(artTile);
-  // })
-  // // move elements below us to the bottom-subcontainer
-  // nextChildren.forEach((artTile, index) => {
-  //   const bottomContainer = document.querySelector(`tile-column[section="${parentSection}"] sub-columns-container[section="bottom"]`);
-  //   bottomContainer.querySelectorAll('sub-tile-column')[index % 2].appendChild(artTile);
-  // })
 }

@@ -67,6 +67,7 @@ tile-column {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  align-content: flex-start;
   margin-bottom: 80px;
   padding-left: 10px;
   padding-right: 10px;
