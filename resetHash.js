@@ -3,7 +3,7 @@ function resetHash() {
   scrollV = document.body.scrollTop;
   scrollH = document.body.scrollLeft;
 
-  window.location.hash = '';
+  window.location.hash = "";
 
   // Restore the scroll offset, should be flicker free
   document.body.scrollTop = scrollV;
