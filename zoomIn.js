@@ -2,6 +2,14 @@ function zoomIn(target) {
   if (target.parentElement.tagName !== 'ART-TILE') {
     return false;
   }
+
+  // reset all styles
+  document.querySelectorAll('art-tile').forEach((childElement) => {
+    childElement.style.width = "100%"
+    childElement.style.boxShadow = "0px 0px 0px black";
+    childElement.style.zIndex = '0'
+  });
+
   target = target.parentElement.firstElementChild; // ensures that we are selecting the media element, and not the text
 
   const hash = window.location.hash.split('#')[1];
@@ -23,6 +31,32 @@ function zoomIn(target) {
     }
     return index === parentSection ? '2.75fr' : '1fr';
   }).join(' ');
+
+  // make surrounding elements small
+  if (parentSection >= 0) {
+    document.querySelectorAll('tile-column')[parentSection].style.flexDirection = 'row';
+    document.querySelectorAll('tile-column')[parentSection].style.justifyContent = 'space-between';
+
+    const previousChildren = [];
+    const nextChildren = [];
+    let isProcessingPreviousChildren = true;
+    [...target.parentElement.parentElement.children].forEach(child => {
+      if (child.tagName !== 'ART-TILE') {
+        return;
+      }
+      if (child === target.parentElement) {
+        child.style.width = "100%";
+        child.style.boxShadow = "0px 0px 1000px black, 0px 0px 1000px black";
+        child.style.zIndex = '1';
+      } else {
+        child.style.width = "calc(50% - 20px)"
+      }
+    });
+    // [...nextChildren, ...previousChildren].forEach((childElement) => { childElement.style.width = "calc(50% - 20px)" });
+  } else {
+    console.log('resize back');
+    // document.querySelectorAll('art-tile').forEach((childElement) => { childElement.style.width = "100%" });
+  }
 
   // scroll to the element that was clicked (if it's now out of view)
   target.scrollIntoView({ behavior: "smooth", block: "start" });
