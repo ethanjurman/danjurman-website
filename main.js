@@ -5,9 +5,34 @@ const client = contentful.createClient({
   accessToken: 'if9Vw15EoyMc4a-Js1-gztNYSIwTnPnEsE7OQaZEJoM'
 })
 
+const MAX_COLUMNS = 3
+
 const artTileElements = [];
+const topSubColumnsContainerElements = [];
+const bottomSubColumnsContainerElements = [];
 let columns = 0;
-let largeColumn = null;
+
+// build sub-columns-container elements based on the max number of columns there could be
+function createSubColumnsContainerElements() {
+  [...new Array(MAX_COLUMNS)].forEach(() => {
+    const newSubColumnsContainerElement = document.createElement('sub-columns-container');
+    newSubColumnsContainerElement.setAttribute('section', 'top');
+    newSubColumnsContainerElement.innerHTML = `
+      <sub-tile-column section='0'></sub-tile-column>
+      <sub-tile-column section='1'></sub-tile-column>
+    `
+    topSubColumnsContainerElements.push(newSubColumnsContainerElement)
+  });
+  [...new Array(MAX_COLUMNS)].forEach(() => {
+    const newSubColumnsContainerElement = document.createElement('sub-columns-container');
+    newSubColumnsContainerElement.setAttribute('section', 'bottom');
+    newSubColumnsContainerElement.innerHTML = `
+      <sub-tile-column section='0'></sub-tile-column>
+      <sub-tile-column section='1'></sub-tile-column>
+    `
+    bottomSubColumnsContainerElements.push(newSubColumnsContainerElement)
+  })
+}
 
 // pull the entry for the main page (you can find this in contentful, info panel)
 const mainPageEntry = '2FDoqwaVPKZiumNtdH86Ad'
@@ -15,8 +40,9 @@ client.getEntry(mainPageEntry)
   .then((entry) => {
     // create all the art-tile elements and push them to `artTileElements`
     // by doing this first, when we append later, the elements will just move to where they need to go
-    entry.fields.artTiles.forEach(generateArtTile)
-    processArtTiles()
+    entry.fields.artTiles.forEach(generateArtTile);
+    createSubColumnsContainerElements();
+    processArtTiles();
   })
   .catch(console.error)
 
@@ -51,9 +77,21 @@ function generateMediaElement(media) {
 // function to go through all the loaded art-tile elements (from contentful)
 // and add then to the page
 function processArtTiles() {
+  // append top sub-columns container
+  [...new Array(columns)].forEach((_, index) => {
+    const topSubColumnsContainerElement = topSubColumnsContainerElements[index]
+    document.querySelector(`tile-column[section="${index}"]`).appendChild(topSubColumnsContainerElement);
+  });
+
+  // append tiles
   artTileElements.forEach((artTileElement, index) => {
-    const numberOfTiles = document.querySelectorAll('tile-container').length;
-    document.querySelector(`tile-container[section="${index % numberOfTiles}"]`).appendChild(artTileElement);
+    document.querySelector(`tile-column[section="${index % columns}"]`).appendChild(artTileElement);
+  });
+
+  // append bottom sub-columns container
+  [...new Array(columns)].forEach((_, index) => {
+    const bottomSubColumnsContainerElement = bottomSubColumnsContainerElements[index];
+    document.querySelector(`tile-column[section="${index}"]`).appendChild(bottomSubColumnsContainerElement);
   })
 }
 
@@ -86,13 +124,13 @@ function createTileContainers(numberOfTiles) {
   // clean up previous tile containers
   const parentContainer = document.querySelector('columns-container');
   parentContainer.innerHTML = ''
-  parentContainer.style.gridTemplateColumns = '1fr '.repeat(numberOfTiles)
+  parentContainer.style.gridTemplateColumns = `1fr ${numberOfTiles > 1 ? '1fr' : '0fr'} ${numberOfTiles > 2 ? '1fr' : '0fr'}`
 
   // create new tile containers
   for (let i = 0; i < numberOfTiles; i++) {
-    const tileElement = document.createElement('tile-container');
-    tileElement.setAttribute('section', i);
-    parentContainer.appendChild(tileElement)
+    const tileColumnElement = document.createElement('tile-column');
+    tileColumnElement.setAttribute('section', i);
+    parentContainer.appendChild(tileColumnElement)
   }
 }
 
@@ -104,11 +142,14 @@ const resizeObserver = new ResizeObserver((entries) => {
   // determine how many tile containers we should make
   const newNumberOfColumns = Math.min(Math.ceil(window.innerWidth / 600), 3);
   if (columns !== newNumberOfColumns) {
+    columns = newNumberOfColumns;
     // make tile containers
     createTileContainers(newNumberOfColumns)
-    // re-generate art blocks for each tile container
-    processArtTiles()
-    columns = newNumberOfColumns;
+    // re-generate art blocks for each tile container (if we have art-tiles)
+    // if we don't have any art tiles, don't do anything yet
+    if (artTileElements.length > 0) {
+      processArtTiles()
+    }
   }
 })
 

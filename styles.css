@@ -65,11 +65,18 @@ columns-container {
   padding-top: 60px;
 }
 
-tile-container {
+tile-column,
+sub-tile-column {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   margin-bottom: 80px;
+}
+
+sub-columns-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transition: 1s;
 }
 
 /* main page */

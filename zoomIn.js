@@ -17,7 +17,12 @@ function zoomIn(target) {
 
   const columnsContainer = document.querySelector('columns-container');
   const oldGridTemplate = columnsContainer.style.gridTemplateColumns;
-  const newGridTemplate = oldGridTemplate.split(' ').map((_, index) => index === parentSection ? '2.75fr' : '1fr').join(' ');
+  const newGridTemplate = oldGridTemplate.split(' ').map((oldValue, index) => {
+    if (oldValue === '0fr') {
+      return '0fr';
+    }
+    return index === parentSection ? '2.75fr' : '1fr';
+  }).join(' ');
 
   // scroll to the element that was clicked (if it's now out of view)
   target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -48,4 +53,35 @@ function zoomIn(target) {
   if (parentSection === -1) {
     resetHash();
   }
+
+  // move elements into the top and bottom subcontainers
+  // first, determine what elements need to be moved
+  // const previousChildren = [];
+  // const nextChildren = [];
+  // let isProcessingPreviousChildren = true;
+  // [...target.parentElement.parentElement.children].forEach(child => {
+  //   if (child.tagName !== 'ART-TILE') {
+  //     return;
+  //   }
+  //   if (child === target.parentElement) {
+  //     isProcessingPreviousChildren = false
+  //     return;
+  //   }
+  //   if (isProcessingPreviousChildren) {
+  //     previousChildren.push(child);
+  //   } else {
+  //     nextChildren.push(child);
+  //   }
+  // });
+
+  // // move elements above us to the top-subcontainer
+  // previousChildren.forEach((artTile, index) => {
+  //   const topContainer = document.querySelector(`tile-column[section="${parentSection}"] sub-columns-container[section="top"]`);
+  //   topContainer.querySelectorAll('sub-tile-column')[index % 2].appendChild(artTile);
+  // })
+  // // move elements below us to the bottom-subcontainer
+  // nextChildren.forEach((artTile, index) => {
+  //   const bottomContainer = document.querySelector(`tile-column[section="${parentSection}"] sub-columns-container[section="bottom"]`);
+  //   bottomContainer.querySelectorAll('sub-tile-column')[index % 2].appendChild(artTile);
+  // })
 }
