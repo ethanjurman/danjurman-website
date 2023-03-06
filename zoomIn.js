@@ -14,11 +14,6 @@ function zoomIn(target) {
     childElement.style.width = "100%";
     childElement.style.boxShadow = "0px 0px 0px black";
     childElement.style.zIndex = "0";
-  });
-  document.querySelectorAll("art-tile").forEach((tileElement) => {
-    tileElement.style.width = "100%";
-    tileElement.style.boxShadow = "0px 0px 0px black";
-    tileElement.style.zIndex = "0";
     tileElement.removeAttribute("zoomedin");
   });
 
