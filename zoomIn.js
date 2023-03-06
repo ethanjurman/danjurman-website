@@ -3,20 +3,37 @@ function zoomIn(target) {
     return false;
   }
 
+  const elementIsAlreadyZoomedIn =
+    target.parentElement.getAttribute("zoomedin") === "";
+
   // reset all styles
   document.querySelectorAll("tile-column").forEach((tileElement) => {
     tileElement.style.flexDirection = "column";
-  })
+  });
   document.querySelectorAll("art-tile").forEach((childElement) => {
     childElement.style.width = "100%";
     childElement.style.boxShadow = "0px 0px 0px black";
     childElement.style.zIndex = "0";
   });
+  document.querySelectorAll("art-tile").forEach((tileElement) => {
+    tileElement.style.width = "100%";
+    tileElement.style.boxShadow = "0px 0px 0px black";
+    tileElement.style.zIndex = "0";
+    tileElement.removeAttribute("zoomedin");
+  });
+
+  // reset styles of tile-columns
+  document.querySelectorAll("tile-column").forEach((tileColumn) => {
+    tileColumn.style.flexDirection = "column";
+    tileColumn.style.justifyContent = "";
+  });
+
+  if (!elementIsAlreadyZoomedIn) {
+    // set the attribute on this element, to indicate it is zoomed in
+    target.parentElement.setAttribute("zoomedin", "");
+  }
 
   target = target.parentElement.firstElementChild; // ensures that we are selecting the media element, and not the text
-
-  const hash = window.location.hash.split("#")[1];
-  const newHash = target.parentElement.textContent.replace(/\W/g, "");
 
   // determine what column we are in, and set that width to be wider
   let parentSection = parseInt(
@@ -24,7 +41,7 @@ function zoomIn(target) {
   );
 
   // if we've selected the same image, we should shrink
-  if (hash === newHash) {
+  if (elementIsAlreadyZoomedIn) {
     parentSection = -1;
   }
 
@@ -85,10 +102,10 @@ function zoomIn(target) {
   }
 
   // set hash
-  if (parentSection !== -1) {
+  if (!elementIsAlreadyZoomedIn) {
     window.location.hash = target.parentElement.textContent.replace(/\W/g, "");
   }
-  if (parentSection === -1) {
+  if (elementIsAlreadyZoomedIn) {
     resetHash();
   }
 }

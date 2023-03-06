@@ -57,6 +57,17 @@ a {
   font-weight: 700;
 }
 
+/* don't display titles unless they are on the zoomed in element */
+art-title,
+art-publication {
+  display: none;
+}
+
+art-tile[zoomedin] art-title,
+art-tile[zoomedin] art-publication {
+  display: block;
+}
+
 columns-container {
   display: grid;
   transition: 1s;
@@ -71,6 +82,7 @@ tile-column {
   margin-bottom: 80px;
   padding-left: 10px;
   padding-right: 10px;
+  transition: all 1s;
 }
 
 sub-columns-container {
@@ -100,12 +112,10 @@ art-tile > img {
 }
 
 art-title {
-  display: block;
   margin: 6px 0px 4px 0px;
 }
 
 art-publication {
-  display: block;
   font-size: 14px;
   font-style: italic;
 }
