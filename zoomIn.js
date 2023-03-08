@@ -14,7 +14,7 @@ function zoomIn(target) {
     childElement.style.width = "100%";
     childElement.style.boxShadow = "0px 0px 0px black";
     childElement.style.zIndex = "0";
-    tileElement.removeAttribute("zoomedin");
+    childElement.removeAttribute("zoomedin");
   });
 
   // reset styles of tile-columns
