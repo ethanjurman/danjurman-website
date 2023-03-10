@@ -80,8 +80,6 @@ tile-column {
   flex-direction: column;
   align-content: flex-start;
   margin-bottom: 80px;
-  margin-left: 10px;
-  margin-right: 10px;
   transition: all 1s;
 }
 
