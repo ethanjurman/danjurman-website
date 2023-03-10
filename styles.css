@@ -80,8 +80,8 @@ tile-column {
   flex-direction: column;
   align-content: flex-start;
   margin-bottom: 80px;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   transition: all 1s;
 }
 
@@ -94,13 +94,45 @@ sub-columns-container {
 /* main page */
 
 art-tile {
-  padding: 10px;
+  margin: 10px;
   cursor: pointer;
   transition: all 1s;
+  position: relative;
 }
 art-tile > video,
 art-tile > img {
   max-width: 100%;
+}
+art-tile::before {
+  content: "";
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.2s;
+}
+art-tile:hover::before {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+art-tile::after {
+  content: "";
+  color: white;
+  position: absolute;
+  display: block;
+  text-align: center;
+  top: 25%;
+  left: 20px;
+  height: 100%;
+  width: calc(100% - 40px);
+  transition: all 0.2s;
+  font-size: 2em;
+  font-weight: 700;
+}
+art-tile:hover::after {
+  content: attr(data-title);
 }
 
 .img-placeholder {

@@ -112,6 +112,7 @@ function generateArtTile(artTile) {
   const { title, media, publication } = artTile.fields;
   // create tile
   const artTileElement = document.createElement("art-tile");
+  artTileElement.setAttribute("data-title", title);
   const mediaElement = generateMediaElement(media);
   artTileElement.innerHTML = `
 		${mediaElement.outerHTML}
@@ -140,9 +141,8 @@ function createTileContainers(numberOfTiles) {
   // clean up previous tile containers
   const parentContainer = document.querySelector("columns-container");
   parentContainer.innerHTML = "";
-  parentContainer.style.gridTemplateColumns = `1fr ${
-    numberOfTiles > 1 ? "1fr" : "0fr"
-  } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
+  parentContainer.style.gridTemplateColumns = `1fr ${numberOfTiles > 1 ? "1fr" : "0fr"
+    } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
 
   // create new tile containers
   for (let i = 0; i < numberOfTiles; i++) {
