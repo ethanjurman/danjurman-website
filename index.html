@@ -7,7 +7,7 @@
     />
 
     <script src="https://unpkg.com/contentful@8.2.0/dist/contentful.browser.min.js"></script>
-    <script src="./zoomIn.js" defer></script>
+    <script src="./showcaseImage.js" defer></script>
     <script src="./resetHash.js" defer></script>
     <script src="./main.js" defer></script>
     <script src="./scrollToHash.js" defer></script>
@@ -38,10 +38,12 @@
       </div>
     </div>
 
-    <columns-container>
-      <tile-column section="0"></tile-column>
-      <tile-column section="1"></tile-column>
-    </columns-container>
+    <header-spacer></header-spacer>
+    <showcase-tile>
+      <showcase-description></showcase-description>
+      <showcase-image></showcase-image>
+    </showcase-tile>
+    <columns-container> </columns-container>
 
     <footer>All Work © Daniel Jurman 2023</footer>
   </body>

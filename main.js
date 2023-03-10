@@ -12,32 +12,6 @@ const topSubColumnsContainerElements = [];
 const bottomSubColumnsContainerElements = [];
 let columns = 0;
 
-// build sub-columns-container elements based on the max number of columns there could be
-function createSubColumnsContainerElements() {
-  [...new Array(MAX_COLUMNS)].forEach(() => {
-    const newSubColumnsContainerElement = document.createElement(
-      "sub-columns-container"
-    );
-    newSubColumnsContainerElement.setAttribute("section", "top");
-    newSubColumnsContainerElement.innerHTML = `
-      <sub-tile-column section='0'></sub-tile-column>
-      <sub-tile-column section='1'></sub-tile-column>
-    `;
-    topSubColumnsContainerElements.push(newSubColumnsContainerElement);
-  });
-  [...new Array(MAX_COLUMNS)].forEach(() => {
-    const newSubColumnsContainerElement = document.createElement(
-      "sub-columns-container"
-    );
-    newSubColumnsContainerElement.setAttribute("section", "bottom");
-    newSubColumnsContainerElement.innerHTML = `
-      <sub-tile-column section='0'></sub-tile-column>
-      <sub-tile-column section='1'></sub-tile-column>
-    `;
-    bottomSubColumnsContainerElements.push(newSubColumnsContainerElement);
-  });
-}
-
 // pull the entry for the main page (you can find this in contentful, info panel)
 const mainPageEntry = "2FDoqwaVPKZiumNtdH86Ad";
 client
@@ -46,7 +20,6 @@ client
     // create all the art-tile elements and push them to `artTileElements`
     // by doing this first, when we append later, the elements will just move to where they need to go
     entry.fields.artTiles.forEach(generateArtTile);
-    createSubColumnsContainerElements();
     processArtTiles();
   })
   .catch(console.error);
@@ -82,28 +55,11 @@ function generateMediaElement(media) {
 // function to go through all the loaded art-tile elements (from contentful)
 // and add then to the page
 function processArtTiles() {
-  // append top sub-columns container
-  [...new Array(columns)].forEach((_, index) => {
-    const topSubColumnsContainerElement = topSubColumnsContainerElements[index];
-    document
-      .querySelector(`tile-column[section="${index}"]`)
-      .appendChild(topSubColumnsContainerElement);
-  });
-
   // append tiles
   artTileElements.forEach((artTileElement, index) => {
     document
       .querySelector(`tile-column[section="${index % columns}"]`)
       .appendChild(artTileElement);
-  });
-
-  // append bottom sub-columns container
-  [...new Array(columns)].forEach((_, index) => {
-    const bottomSubColumnsContainerElement =
-      bottomSubColumnsContainerElements[index];
-    document
-      .querySelector(`tile-column[section="${index}"]`)
-      .appendChild(bottomSubColumnsContainerElement);
   });
 }
 
@@ -112,6 +68,7 @@ function generateArtTile(artTile) {
   const { title, media, publication } = artTile.fields;
   // create tile
   const artTileElement = document.createElement("art-tile");
+  artTileElement.tabIndex = 0;
   artTileElement.setAttribute("data-title", title);
   const mediaElement = generateMediaElement(media);
   artTileElement.innerHTML = `
@@ -121,8 +78,8 @@ function generateArtTile(artTile) {
 	`;
 
   // click action to make an image (and really, the entire column) larger
-  artTileElement.onclick = (event) => {
-    zoomIn(event.target);
+  artTileElement.onclick = () => {
+    showcaseImage(artTileElement);
   };
 
   // disable right click on art-tiles
@@ -141,8 +98,9 @@ function createTileContainers(numberOfTiles) {
   // clean up previous tile containers
   const parentContainer = document.querySelector("columns-container");
   parentContainer.innerHTML = "";
-  parentContainer.style.gridTemplateColumns = `1fr ${numberOfTiles > 1 ? "1fr" : "0fr"
-    } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
+  parentContainer.style.gridTemplateColumns = `1fr ${
+    numberOfTiles > 1 ? "1fr" : "0fr"
+  } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
 
   // create new tile containers
   for (let i = 0; i < numberOfTiles; i++) {

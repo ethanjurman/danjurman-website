@@ -5,6 +5,12 @@ body {
   font-family: "Archivo", sans-serif;
 }
 
+showcase-tile {
+  display: flex;
+  margin: 2em;
+  justify-content: space-around;
+}
+
 art-title {
   font-family: "Archivo Black", sans-serif;
 }
@@ -57,6 +63,11 @@ a {
   font-weight: 700;
 }
 
+header-spacer {
+  display: block;
+  padding-bottom: 60px;
+}
+
 /* don't display titles unless they are on the zoomed in element */
 art-title,
 art-publication {
@@ -71,7 +82,6 @@ art-tile[zoomedin] art-publication {
 columns-container {
   display: grid;
   transition: 1s;
-  padding-top: 60px;
 }
 
 tile-column {
@@ -83,12 +93,6 @@ tile-column {
   transition: all 1s;
 }
 
-sub-columns-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  transition: 1s;
-}
-
 /* main page */
 
 art-tile {
@@ -97,11 +101,14 @@ art-tile {
   transition: all 1s;
   position: relative;
 }
+
 art-tile > video,
 art-tile > img {
   max-width: 100%;
+  max-height: 70vh;
 }
-art-tile::before {
+
+tile-column art-tile::before {
   content: "";
   color: white;
   position: absolute;
@@ -112,10 +119,12 @@ art-tile::before {
   background-color: rgba(0, 0, 0, 0);
   transition: all 0.2s;
 }
-art-tile:hover::before {
+
+tile-column art-tile:hover::before {
   background-color: rgba(0, 0, 0, 0.8);
 }
-art-tile::after {
+
+tile-column art-tile::after {
   content: "";
   color: white;
   position: absolute;
@@ -130,7 +139,8 @@ art-tile::after {
   font-size: 2em;
   font-weight: 700;
 }
-art-tile:hover::after {
+
+tile-column art-tile:hover::after {
   content: attr(data-title);
 }
 
