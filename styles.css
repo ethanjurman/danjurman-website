@@ -119,9 +119,10 @@ art-tile::after {
   content: "";
   color: white;
   position: absolute;
-  display: block;
+  display: flex;
   text-align: center;
-  top: 25%;
+  align-items: center;
+  top: 0px;
   left: 20px;
   height: 100%;
   width: calc(100% - 40px);
