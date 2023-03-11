@@ -21,6 +21,7 @@ client
     // by doing this first, when we append later, the elements will just move to where they need to go
     entry.fields.artTiles.forEach(generateArtTile);
     processArtTiles();
+    showCaseAtStart();
   })
   .catch(console.error);
 
@@ -65,11 +66,14 @@ function processArtTiles() {
 
 // function to generate a single art tile, and save it to our list of artTileElements
 function generateArtTile(artTile) {
-  const { title, media, publication } = artTile.fields;
+  const { title, media, publication, description, hoverTitle } = artTile.fields;
   // create tile
   const artTileElement = document.createElement("art-tile");
   artTileElement.tabIndex = 0;
   artTileElement.setAttribute("data-title", title);
+  artTileElement.setAttribute("data-hover-title", hoverTitle || title);
+  artTileElement.setAttribute("data-publication", publication);
+  artTileElement.setAttribute("data-description", description || "");
   const mediaElement = generateMediaElement(media);
   artTileElement.innerHTML = `
 		${mediaElement.outerHTML}
@@ -98,9 +102,8 @@ function createTileContainers(numberOfTiles) {
   // clean up previous tile containers
   const parentContainer = document.querySelector("columns-container");
   parentContainer.innerHTML = "";
-  parentContainer.style.gridTemplateColumns = `1fr ${
-    numberOfTiles > 1 ? "1fr" : "0fr"
-  } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
+  parentContainer.style.gridTemplateColumns = `1fr ${numberOfTiles > 1 ? "1fr" : "0fr"
+    } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
 
   // create new tile containers
   for (let i = 0; i < numberOfTiles; i++) {

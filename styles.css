@@ -10,6 +10,18 @@ showcase-tile {
   margin: 2em;
   justify-content: space-around;
 }
+showcase-back-button {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #808080;
+  transition: all 0.25s;
+}
+showcase-back-button:hover {
+  color: black;
+}
 
 art-title {
   font-family: "Archivo Black", sans-serif;
@@ -141,7 +153,7 @@ tile-column art-tile::after {
 }
 
 tile-column art-tile:hover::after {
-  content: attr(data-title);
+  content: attr(data-hover-title);
 }
 
 .img-placeholder {

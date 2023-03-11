@@ -1,5 +1,34 @@
+let savedScrollVertical = 0;
+
+function showCaseAtStart() {
+  if (window.location.hash) {
+    const showCaseArtTile = [...document.getElementsByTagName("art-tile")].filter(artTile => {
+      return window.location.hash === `#${artTile.getAttribute('data-title').replace(/\W/g, "")}`;
+    })
+    showcaseImage(showCaseArtTile[0]);
+  }
+}
+
+function leaveShowcaseImage() {
+  const showcaseTile = document.querySelector("showcase-tile");
+  showcaseTile.innerHTML = `
+    <showcase-description>
+      <showcase-back-button style="display:none">back</showcase-back-button>
+    </showcase-description>
+    <showcase-image></showcase-image>
+  `;
+  processArtTiles();
+  resetHash();
+
+  scrollTo({ top: savedScrollVertical, behavior: "smooth" });
+}
+
 function showcaseImage(artTile) {
-  console.log(artTile);
+  // set hash
+  savedScrollVertical = document.body.scrollTop;
+  window.location.hash = artTile.getAttribute('data-title').replace(/\W/g, "");
+
+
   // re-process all the tiles to put everything in the column it was in
   processArtTiles();
 
@@ -11,8 +40,10 @@ function showcaseImage(artTile) {
     "showcase-description"
   );
   showcaseDescription.innerHTML = `
+    <showcase-back-button onclick="leaveShowcaseImage()">back</showcase-back-button>
     <h2>${artTile.getAttribute("data-title")}</h2>
-    <p>Example Description for Image</p>
+    <p><i>${artTile.getAttribute("data-publication")}</i></p>
+    <p>${artTile.getAttribute("data-description")}</p>
   `;
 
   scrollTo({ top: 0, behavior: "smooth" });
