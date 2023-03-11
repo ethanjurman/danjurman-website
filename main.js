@@ -128,6 +128,7 @@ const resizeObserver = new ResizeObserver((entries) => {
     // if we don't have any art tiles, don't do anything yet
     if (artTileElements.length > 0) {
       processArtTiles();
+      showCaseAtStart();
     }
   }
 });
