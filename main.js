@@ -21,7 +21,7 @@ client
     // by doing this first, when we append later, the elements will just move to where they need to go
     entry.fields.artTiles.forEach(generateArtTile);
     processArtTiles();
-    showCaseAtStart();
+    showcaseImageStart();
   })
   .catch(console.error);
 

@@ -1,35 +1,36 @@
-let savedScrollVertical = 0;
-
-function showCaseAtStart() {
+function showcaseImageStart() {
+  // show showcase at the top of the page
   if (window.location.hash) {
     const showCaseArtTile = [...document.getElementsByTagName("art-tile")].filter(artTile => {
       return window.location.hash === `#${artTile.getAttribute('data-title').replace(/\W/g, "")}`;
     })
     showcaseImage(showCaseArtTile[0]);
+    setTimeout(() => scrollTo({ top: 0, behavior: 'smooth' }), 0);
+  }
+
+  // do not show showcase at the top of the page
+  if (!window.location.hash) {
+    const showcaseTile = document.querySelector("showcase-tile");
+    showcaseTile.innerHTML = `
+      <showcase-description>
+        <showcase-back-button style="display:none">back</showcase-back-button>
+      </showcase-description>
+      <showcase-image></showcase-image>
+    `;
+
+    // hide hr element
+    document.querySelector('hr').setAttribute("style", "display: none");
+
+    processArtTiles();
   }
 }
 
-function leaveShowcaseImage() {
-  const showcaseTile = document.querySelector("showcase-tile");
-  showcaseTile.innerHTML = `
-    <showcase-description>
-      <showcase-back-button style="display:none">back</showcase-back-button>
-    </showcase-description>
-    <showcase-image></showcase-image>
-  `;
-
-  // hide hr element
-  document.querySelector('hr').setAttribute("style", "display: none");
-
-  processArtTiles();
-  resetHash();
-
-  scrollTo({ top: savedScrollVertical, behavior: "smooth" });
+function goBack() {
+  history.back();
 }
 
 function showcaseImage(artTile) {
   // set hash
-  savedScrollVertical = document.body.scrollTop;
   window.location.hash = artTile.getAttribute('data-title').replace(/\W/g, "");
 
 
@@ -44,7 +45,7 @@ function showcaseImage(artTile) {
     "showcase-description"
   );
   showcaseDescription.innerHTML = `
-    <showcase-back-button onclick="leaveShowcaseImage()">back</showcase-back-button>
+    <showcase-back-button onclick="goBack()">back</showcase-back-button>
     <h2>${artTile.getAttribute("data-title")}</h2>
     <p><i>${artTile.getAttribute("data-publication")}</i></p>
     <p>${artTile.getAttribute("data-description")}</p>
@@ -55,3 +56,7 @@ function showcaseImage(artTile) {
 
   scrollTo({ top: 0, behavior: "smooth" });
 }
+
+window.onpopstate = () => {
+  showcaseImageStart();
+};
