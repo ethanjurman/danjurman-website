@@ -17,6 +17,10 @@ function leaveShowcaseImage() {
     </showcase-description>
     <showcase-image></showcase-image>
   `;
+
+  // hide hr element
+  document.querySelector('hr').setAttribute("style", "display: none");
+
   processArtTiles();
   resetHash();
 
@@ -45,6 +49,9 @@ function showcaseImage(artTile) {
     <p><i>${artTile.getAttribute("data-publication")}</i></p>
     <p>${artTile.getAttribute("data-description")}</p>
   `;
+
+  // show hr element
+  document.querySelector('hr').setAttribute("style", "");
 
   scrollTo({ top: 0, behavior: "smooth" });
 }

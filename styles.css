@@ -9,7 +9,15 @@ showcase-tile {
   display: flex;
   margin: 2em;
   justify-content: space-around;
+  /* flex-direction: row; */
 }
+
+@media screen and (max-width: 600px) {
+  showcase-tile {
+    flex-direction: column-reverse;
+  }
+}
+
 showcase-back-button {
   cursor: pointer;
   display: inline-block;
@@ -18,6 +26,7 @@ showcase-back-button {
   font-weight: 700;
   color: #808080;
   transition: all 0.25s;
+  padding-top: 16px;
 }
 showcase-back-button:hover {
   color: black;
