@@ -5,7 +5,7 @@ function showcaseImageStart() {
       return window.location.hash === `#${artTile.getAttribute('data-title').replace(/\W/g, "")}`;
     })
     showcaseImage(showCaseArtTile[0]);
-    setTimeout(() => scrollTo({ top: 0, behavior: 'smooth' }), 0);
+    setTimeout(() => scrollTo({ top: 0, behavior: 'auto' }), 0);
   }
 
   // do not show showcase at the top of the page
