@@ -57,6 +57,6 @@ function showcaseImage(artTile) {
   scrollTo({ top: 0, behavior: "smooth" });
 }
 
-window.onpopstate = () => {
+window.onpopstate = (event) => {
   showcaseImageStart();
 };
