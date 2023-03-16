@@ -1,8 +1,8 @@
 /* Set fonts */
-@import url("https://fonts.googleapis.com/css2?family=Archivo&family=Archivo+Black&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 body {
-  font-family: "Archivo", sans-serif;
+  font-family: "Courier Prime", monospace;
 }
 
 showcase-tile {
@@ -41,6 +41,7 @@ body {
   margin: 0px;
   position: relative;
   min-height: 100vh;
+  background: #fffffc;
 }
 
 a {
@@ -53,7 +54,7 @@ a {
   position: fixed;
   top: 0px;
   width: calc(100% - 28px);
-  background: white;
+  background: #fffaf8;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,34 +132,33 @@ art-tile > img {
 
 tile-column art-tile::before {
   content: "";
-  color: white;
+  color: black;
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  height: 101%;
+  width: 101%;
+  background-color: rgb(255, 255, 252, 0);
   transition: all 0.2s;
 }
 
 tile-column art-tile:hover::before {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 252, 0.8);
 }
 
 tile-column art-tile::after {
   content: "";
-  color: white;
+  color: black;
   position: absolute;
   display: flex;
   text-align: center;
   align-items: center;
+  justify-content: center;
   top: 0px;
-  left: 20px;
+  left: 50px;
   height: 100%;
-  width: calc(100% - 40px);
+  width: calc(100% - 100px);
   transition: all 0.2s;
-  font-size: 2em;
-  font-weight: 700;
 }
 
 tile-column art-tile:hover::after {
