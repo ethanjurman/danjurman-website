@@ -9,7 +9,6 @@ showcase-tile {
   display: flex;
   margin: 2em;
   justify-content: space-around;
-  margin-bottom: 8em;
 }
 
 showcase-image {
@@ -88,9 +87,11 @@ a {
 
 .nav-title {
   display: inline-block;
-  font-size: 30;
-  font-weight: 800;
-  text-transform: uppercase;
+}
+
+.nav-title > a > img {
+  max-height: 4em;
+  margin: 4px;
 }
 
 .nav-links {

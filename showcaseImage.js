@@ -11,6 +11,8 @@ function showcaseImageStart() {
   // do not show showcase at the top of the page
   if (!window.location.hash) {
     const showcaseTile = document.querySelector("showcase-tile");
+    showcaseTile.style.marginTop = '';
+    showcaseTile.style.marginBottom = '';
     showcaseTile.innerHTML = `
       <showcase-description>
         <showcase-back-button style="display:none">back</showcase-back-button>
@@ -47,6 +49,8 @@ function showcaseImage(artTile) {
 
   // append this art tile to the top showcase tile (moving it from where it was in the grid)
   const showcaseTile = document.querySelector("showcase-tile");
+  showcaseTile.style.marginTop = '4em';
+  showcaseTile.style.marginBottom = '8em';
   showcaseTile.querySelector("showcase-image").innerHTML = "";
   showcaseTile.querySelector("showcase-image").appendChild(artTile);
   // append the other images
