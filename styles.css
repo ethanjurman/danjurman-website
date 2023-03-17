@@ -131,7 +131,7 @@ tile-column {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  align-content: flex-start;
+  align-items: center;
   margin-bottom: 80px;
   transition: all 1s;
 }
@@ -139,7 +139,7 @@ tile-column {
 /* main page */
 
 art-tile {
-  margin: 10px;
+  margin: 15px;
   cursor: pointer;
   transition: all 1s;
   position: relative;
