@@ -31,6 +31,11 @@ showcase-description {
   margin-left: 20px;
 }
 
+showcase-description > h2 {
+  margin-top: 0px;
+  line-height: 1em;
+}
+
 @media screen and (max-width: 1000px) {
   showcase-tile {
     flex-direction: column-reverse;
@@ -41,12 +46,12 @@ showcase-back-button {
   cursor: pointer;
   display: inline-block;
   font-size: 0.9em;
-  text-transform: uppercase;
   font-weight: 700;
   color: #808080;
   transition: all 0.25s;
-  padding-top: 16px;
+  padding-top: 6em;
 }
+
 showcase-back-button:hover {
   color: black;
 }

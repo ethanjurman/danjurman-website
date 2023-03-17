@@ -46,7 +46,7 @@ function showcaseImage(artTile) {
 
   // append this art tile to the top showcase tile (moving it from where it was in the grid)
   const showcaseTile = document.querySelector("showcase-tile");
-  showcaseTile.style.marginTop = '4em';
+  showcaseTile.style.marginTop = '9em';
   showcaseTile.style.marginBottom = '8em';
   showcaseTile.querySelector("showcase-image").innerHTML = "";
   showcaseTile.querySelector("showcase-image").appendChild(artTile);
@@ -58,8 +58,8 @@ function showcaseImage(artTile) {
   );
   showcaseDescription.innerHTML = `
     <h2>${artTile.getAttribute("data-title")}</h2>
-    <p><i>${artTile.getAttribute("data-publication")}</i></p>
-    <p>${artTile.getAttribute("data-description")}</p>
+    <p style="margin-top: 3.5em;">${artTile.getAttribute("data-description")}</p>
+    <p style="margin-top: 2em;"><i>${artTile.getAttribute("data-publication")}</i></p>
     <showcase-back-button onclick="goBack()">back</showcase-back-button
   `;
 
