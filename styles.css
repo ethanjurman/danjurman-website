@@ -27,11 +27,11 @@ showcase-image > img {
 }
 
 showcase-description {
-  margin-right: 80px;
+  margin-right: 10%;
   margin-left: 20px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   showcase-tile {
     flex-direction: column-reverse;
   }
@@ -79,7 +79,7 @@ a {
   align-items: center;
   padding-top: 5px;
   padding-bottom: 10px;
-  border-bottom: 2px solid;
+  border-bottom: 1px solid #aaaaaa;
   padding-left: 14px;
   padding-right: 14px;
   z-index: 5;

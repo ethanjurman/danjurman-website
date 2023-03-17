@@ -20,9 +20,6 @@ function showcaseImageStart() {
       <showcase-image></showcase-image>
     `;
 
-    // hide hr element
-    document.querySelector('hr').setAttribute("style", "display: none");
-
     processArtTiles();
   }
 }
@@ -60,14 +57,11 @@ function showcaseImage(artTile) {
     "showcase-description"
   );
   showcaseDescription.innerHTML = `
-    <showcase-back-button onclick="goBack()">back</showcase-back-button>
     <h2>${artTile.getAttribute("data-title")}</h2>
     <p><i>${artTile.getAttribute("data-publication")}</i></p>
     <p>${artTile.getAttribute("data-description")}</p>
+    <showcase-back-button onclick="goBack()">back</showcase-back-button
   `;
-
-  // show hr element
-  document.querySelector('hr').setAttribute("style", "");
 
   scrollTo({ top: 0, behavior: "smooth" });
 }
