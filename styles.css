@@ -148,7 +148,6 @@ art-tile {
 art-tile > video,
 art-tile > img {
   max-width: 100%;
-  max-height: 70vh;
 }
 
 tile-column art-tile::before {
