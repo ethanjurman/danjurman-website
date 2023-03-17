@@ -47,7 +47,7 @@ function showcaseImage(artTile) {
   // append this art tile to the top showcase tile (moving it from where it was in the grid)
   const showcaseTile = document.querySelector("showcase-tile");
   showcaseTile.style.marginTop = '9em';
-  showcaseTile.style.marginBottom = '8em';
+  showcaseTile.style.marginBottom = '16em';
   showcaseTile.querySelector("showcase-image").innerHTML = "";
   showcaseTile.querySelector("showcase-image").appendChild(artTile);
   // append the other images
@@ -63,7 +63,7 @@ function showcaseImage(artTile) {
     <showcase-back-button onclick="goBack()">back</showcase-back-button
   `;
 
-  scrollTo({ top: 0, behavior: "smooth" });
+  // scrollTo({ top: 0, behavior: "smooth" });
 }
 
 window.onpopstate = (event) => {
