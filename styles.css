@@ -164,7 +164,7 @@ tile-column art-tile::before {
 }
 
 tile-column art-tile:hover::before {
-  background-color: rgba(255, 255, 252, 0.8);
+  background-color: rgba(255, 255, 252, 0.95);
 }
 
 tile-column art-tile::after {
@@ -180,6 +180,7 @@ tile-column art-tile::after {
   height: 100%;
   width: calc(100% - 100px);
   transition: all 0.2s;
+  font-size: 1.15em;
 }
 
 tile-column art-tile:hover::after {
