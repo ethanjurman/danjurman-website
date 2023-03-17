@@ -34,6 +34,7 @@ showcase-description {
 showcase-description > h2 {
   margin-top: 0px;
   line-height: 1em;
+  font-weight: 400;
 }
 
 @media screen and (max-width: 1000px) {
@@ -103,7 +104,6 @@ a {
   display: inline-block;
   padding-top: 8px;
   font-size: 14;
-  text-transform: uppercase;
 }
 
 .active-link {
@@ -130,6 +130,8 @@ art-tile[zoomedin] art-publication {
 columns-container {
   display: grid;
   transition: 1s;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 tile-column {
