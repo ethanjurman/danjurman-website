@@ -29,6 +29,14 @@ function goBack() {
   history.back();
 }
 
+function getExtraMedia(artTile) {
+  const extraMediaArray = artTileItems.find(item => item.fields.title === artTile.getAttribute('data-title')).fields.extraMedia;
+  if (extraMediaArray) {
+    return extraMediaArray.map(generateMediaElement);
+  }
+  return [];
+}
+
 function showcaseImage(artTile) {
   // set hash
   window.location.hash = artTile.getAttribute('data-title').replace(/\W/g, "");
@@ -39,7 +47,10 @@ function showcaseImage(artTile) {
 
   // append this art tile to the top showcase tile (moving it from where it was in the grid)
   const showcaseTile = document.querySelector("showcase-tile");
+  showcaseTile.querySelector("showcase-image").innerHTML = "";
   showcaseTile.querySelector("showcase-image").appendChild(artTile);
+  // append the other images
+  getExtraMedia(artTile).forEach(img => showcaseTile.querySelector("showcase-image").appendChild(img))
 
   const showcaseDescription = showcaseTile.querySelector(
     "showcase-description"

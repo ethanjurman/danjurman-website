@@ -9,7 +9,27 @@ showcase-tile {
   display: flex;
   margin: 2em;
   justify-content: space-around;
-  /* flex-direction: row; */
+  margin-bottom: 8em;
+}
+
+showcase-image {
+  display: flex;
+  flex-direction: column;
+  min-width: 60%;
+}
+showcase-image > art-tile {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+showcase-image > img {
+  margin-top: 2em;
+}
+
+showcase-description {
+  margin-right: 80px;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 600px) {

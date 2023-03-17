@@ -7,6 +7,7 @@ const client = contentful.createClient({
 
 const MAX_COLUMNS = 3;
 
+let artTileItems = [];
 const artTileElements = [];
 const topSubColumnsContainerElements = [];
 const bottomSubColumnsContainerElements = [];
@@ -19,6 +20,7 @@ client
   .then((entry) => {
     // create all the art-tile elements and push them to `artTileElements`
     // by doing this first, when we append later, the elements will just move to where they need to go
+    artTileItems = entry.fields.artTiles;
     entry.fields.artTiles.forEach(generateArtTile);
     processArtTiles();
     showcaseImageStart();
