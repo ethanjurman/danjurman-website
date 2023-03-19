@@ -16,14 +16,29 @@ client
 
 function generateAboutBlock(aboutEntry) {
   const aboutElement = document.createElement("about-content");
-  const aboutVideoSrc = aboutEntry.fields.media.fields.file.url;
-  const aboutDescriptionHtml = documentToHtmlString(aboutEntry.fields.content);
+  const { media, content, getInTouch, clients, press } = aboutEntry.fields;
+
+  const aboutVideoSrc = media.fields.file.url;
+  const aboutDescriptionContentHtml = documentToHtmlString(content);
+  const aboutDescriptionGetInTouch = documentToHtmlString(getInTouch);
+  const aboutDescriptionClients = documentToHtmlString(clients);
+  const aboutDescriptionPress = documentToHtmlString(press);
 
   aboutElement.innerHTML = `
     <video-container>
       <video src=${aboutVideoSrc} id="about-video" playsinline='' autoplay='' loop='' muted=''></video>
     </video-container>
-    <about-description>${aboutDescriptionHtml}</about-description>
+    <about-description>
+      ${aboutDescriptionContentHtml}
+    </about-description>
+    <about-extras>
+      <about-get-in-touch>${aboutDescriptionGetInTouch}</about-get-in-touch>
+      <about-clients>${aboutDescriptionClients}</about-clients>
+      <about-press>${aboutDescriptionPress}</about-press>
+    </about-extras>
+    <back-button>
+      <a href="/">< back to work</a>
+    </back-button>
   `;
   document.querySelector("about-block").appendChild(aboutElement);
 }

@@ -9,6 +9,8 @@ showcase-tile {
   display: flex;
   margin: 2em;
   justify-content: space-around;
+  margin-top: 9em;
+  margin-bottom: 16em;
 }
 
 showcase-image {
@@ -20,6 +22,7 @@ showcase-image > art-tile {
   margin: 0px;
   display: flex;
   justify-content: center;
+  margin-bottom: 1em;
 }
 
 showcase-image > img {
@@ -37,15 +40,9 @@ showcase-description > h2 {
   font-weight: 400;
 }
 
-@media screen and (max-width: 1000px) {
-  showcase-tile {
-    flex-direction: column-reverse;
-  }
-}
-
 showcase-back-button {
   cursor: pointer;
-  display: inline-block;
+  display: none;
   font-size: 0.9em;
   font-weight: 700;
   color: #808080;
@@ -55,6 +52,26 @@ showcase-back-button {
 
 showcase-back-button:hover {
   color: black;
+}
+
+@media screen and (max-width: 1000px) {
+  showcase-tile {
+    margin-top: 4em;
+    flex-direction: column-reverse;
+  }
+
+  showcase-description {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  showcase-description > h2 {
+    margin-top: 1.8em;
+  }
+
+  showcase-back-button {
+    display: inline-block;
+  }
 }
 
 art-title {
@@ -98,6 +115,7 @@ a {
 .nav-title > a > img {
   max-height: 4em;
   margin: 4px;
+  max-width: 80%;
 }
 
 .nav-links {
@@ -213,17 +231,10 @@ art-publication {
 ul {
   list-style-type: none;
   padding: 0;
-  line-height: 0.2em;
   margin-bottom: 2em;
 }
 
 /* about page */
-
-@media screen and (min-width: 800px) {
-  video-container {
-    flex: 1 !important;
-  }
-}
 
 video-container {
   flex: none;
@@ -253,8 +264,48 @@ video-container {
 about-description {
   flex: 1;
   display: block;
-  padding-left: 20px;
-  font-weight: 700;
+  padding-left: 0px;
+}
+
+about-extras {
+  display: block;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+about-get-in-touch,
+about-clients,
+about-press {
+  border-top: 1px solid black;
+  display: block;
+  margin: 0px 10px;
+  padding-bottom: 2em;
+}
+
+about-links {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2em;
+}
+
+about-links > a > img {
+  max-width: 2em;
+  max-height: 2em;
+  margin: 0.5em;
+}
+
+/* desktop mode */
+@media screen and (min-width: 800px) {
+  video-container {
+    flex: 1 !important;
+  }
+  about-description {
+    padding-left: 20px;
+  }
+  about-extras {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 footer {

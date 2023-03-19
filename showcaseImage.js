@@ -11,8 +11,7 @@ function showcaseImageStart() {
   // do not show showcase at the top of the page
   if (!window.location.hash) {
     const showcaseTile = document.querySelector("showcase-tile");
-    showcaseTile.style.marginTop = '';
-    showcaseTile.style.marginBottom = '';
+    showcaseTile.style.display = 'none';
     showcaseTile.innerHTML = `
       <showcase-description>
         <showcase-back-button style="display:none">back</showcase-back-button>
@@ -46,8 +45,7 @@ function showcaseImage(artTile) {
 
   // append this art tile to the top showcase tile (moving it from where it was in the grid)
   const showcaseTile = document.querySelector("showcase-tile");
-  showcaseTile.style.marginTop = '9em';
-  showcaseTile.style.marginBottom = '16em';
+  showcaseTile.style.display = '';
   showcaseTile.querySelector("showcase-image").innerHTML = "";
   showcaseTile.querySelector("showcase-image").appendChild(artTile);
   // append the other images
@@ -58,7 +56,7 @@ function showcaseImage(artTile) {
   );
   showcaseDescription.innerHTML = `
     <h2>${artTile.getAttribute("data-title")}</h2>
-    <p style="margin-top: 3.5em;">${artTile.getAttribute("data-description")}</p>
+    <p style="margin-top: 2.5em;">${artTile.getAttribute("data-description")}</p>
     <p style="margin-top: 2em;"><i>${artTile.getAttribute("data-publication")}</i></p>
     <showcase-back-button onclick="goBack()">back</showcase-back-button
   `;
