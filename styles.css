@@ -89,7 +89,7 @@ body {
 a {
   color: black;
   text-decoration: none;
-  margin: 0px 4px;
+  margin: 0px;
 }
 
 .nav {
@@ -246,9 +246,9 @@ about-block {
 
 about-content {
   display: flex;
-  padding-top: 60px;
+  padding-top: 90px;
   margin: 20px auto;
-  width: calc(100% - 80px);
+  width: calc(100% - 30px);
   max-width: 1000px;
   flex-wrap: wrap;
 }
@@ -278,7 +278,6 @@ about-clients,
 about-press {
   border-top: 1px solid black;
   display: block;
-  margin: 0px 10px;
   padding-bottom: 2em;
 }
 
@@ -296,6 +295,12 @@ about-links > a > img {
 
 /* desktop mode */
 @media screen and (min-width: 800px) {
+  about-get-in-touch,
+  about-clients,
+  about-press {
+    margin: 0px 10px;
+  }
+
   video-container {
     flex: 1 !important;
   }
