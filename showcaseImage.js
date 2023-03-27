@@ -14,7 +14,9 @@ function showcaseImageStart() {
     showcaseTile.style.display = 'none';
     showcaseTile.innerHTML = `
       <showcase-description>
-        <showcase-back-button style="display:none">back</showcase-back-button>
+        <showcase-description-slider>
+          <showcase-back-button style="display:none">back</showcase-back-button>
+        </showcase-description-slider>
       </showcase-description>
       <showcase-image></showcase-image>
     `;
@@ -55,10 +57,12 @@ function showcaseImage(artTile) {
     "showcase-description"
   );
   showcaseDescription.innerHTML = `
-    <h2>${artTile.getAttribute("data-title")}</h2>
-    <p style="margin-top: 2.5em;">${artTile.getAttribute("data-description")}</p>
-    <p style="margin-top: 2em;"><i>${artTile.getAttribute("data-publication")}</i></p>
-    <showcase-back-button onclick="goBack()">back</showcase-back-button
+    <showcase-description-slider>
+      <h2>${artTile.getAttribute("data-title")}</h2>
+      <p style="margin-top: 2.5em;">${artTile.getAttribute("data-description")}</p>
+      <p style="margin-top: 2em;"><i>${artTile.getAttribute("data-publication")}</i></p>
+      <showcase-back-button onclick="goBack()">back</showcase-back-button>
+    </showcase-description-slider>
   `;
 
   // scrollTo({ top: 0, behavior: "smooth" });

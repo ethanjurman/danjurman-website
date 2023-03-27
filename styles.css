@@ -34,7 +34,12 @@ showcase-description {
   margin-left: 20px;
 }
 
-showcase-description > h2 {
+showcase-description-slider {
+  position: sticky;
+  top: 8em;
+}
+
+showcase-description > * > h2 {
   margin-top: 0px;
   line-height: 1em;
   font-weight: 400;
@@ -150,6 +155,7 @@ columns-container {
   transition: 1s;
   margin-left: 15px;
   margin-right: 15px;
+  margin-top: 2em;
 }
 
 tile-column {
@@ -172,6 +178,7 @@ art-tile {
 
 art-tile > video,
 art-tile > img {
+  width: 100%;
   max-width: 100%;
 }
 
@@ -295,17 +302,21 @@ about-links > a > img {
 
 /* desktop mode */
 @media screen and (min-width: 800px) {
-  about-get-in-touch,
-  about-clients,
-  about-press {
-    margin: 0px 10px;
+  about-extras > *:first-child {
+    margin-left: 0px;
+  }
+  about-extras > *:last-child {
+    margin-right: 0px;
+  }
+  about-extras > * {
+    margin: 0px 30px;
   }
 
   video-container {
     flex: 1 !important;
   }
   about-description {
-    padding-left: 20px;
+    padding-left: 80px;
   }
   about-extras {
     display: grid;
