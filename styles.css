@@ -304,13 +304,13 @@ about-links > a > img {
 /* desktop mode */
 @media screen and (min-width: 800px) {
   about-extras > *:first-child {
-    margin-left: 0px;
+    margin-right: 15px;
   }
   about-extras > *:last-child {
-    margin-right: 0px;
+    margin-left: 15px;
   }
   about-extras > * {
-    margin: 0px 30px;
+    margin: 0px 15px;
   }
 
   video-container {
