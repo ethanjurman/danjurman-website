@@ -36,12 +36,12 @@ function generateMediaElement(media) {
   const { contentType, url } = media.fields.file;
   if (contentType.match("image")) {
     const mediaElement = document.createElement("img");
-    mediaElement.src = url;
+    // mediaElement.src = url;
     return mediaElement;
   }
   if (contentType.match("video")) {
     const mediaElement = document.createElement("video");
-    mediaElement.src = url;
+    // mediaElement.src = url;
     mediaElement.controls = false;
     mediaElement.autoplay = true;
     mediaElement.playsInline = true;
@@ -76,6 +76,7 @@ function generateArtTile(artTile) {
   artTileElement.setAttribute("data-hover-title", hoverTitle || title);
   artTileElement.setAttribute("data-publication", publication);
   artTileElement.setAttribute("data-description", description || "");
+  artTileElement.setAttribute("data-src", media.fields.file.url);
   const mediaElement = generateMediaElement(media);
   artTileElement.innerHTML = `
 		${mediaElement.outerHTML}
@@ -97,6 +98,7 @@ function generateArtTile(artTile) {
   };
 
   artTileElements.push(artTileElement);
+  intersectionObserver.observe(artTileElement);
 }
 
 // function to recreate the tile containers based on the width of the page
@@ -104,8 +106,9 @@ function createTileContainers(numberOfTiles) {
   // clean up previous tile containers
   const parentContainer = document.querySelector("columns-container");
   parentContainer.innerHTML = "";
-  parentContainer.style.gridTemplateColumns = `1fr ${numberOfTiles > 1 ? "1fr" : "0fr"
-    } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
+  parentContainer.style.gridTemplateColumns = `1fr ${
+    numberOfTiles > 1 ? "1fr" : "0fr"
+  } ${numberOfTiles > 2 ? "1fr" : "0fr"}`;
 
   // create new tile containers
   for (let i = 0; i < numberOfTiles; i++) {
@@ -135,3 +138,23 @@ const resizeObserver = new ResizeObserver((entries) => {
 });
 
 resizeObserver.observe(document.body);
+
+/* We are using an intersection observer to determine whether an element should actually load a video or image.
+ * this should make the performance much faster, and only load content that we actually need to display for
+ * (and additionally, hopefully, prevent loading issues with contentful trying to get a bunch of videos at once)
+ */
+
+const intersectionOptions = {
+  rootMargin: "0px",
+  threshold: 0.0,
+};
+
+const intersectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      intersectionObserver.unobserve(entry.target);
+      const srcUrl = entry.target.getAttribute("data-src");
+      entry.target.firstElementChild.setAttribute("src", srcUrl);
+    }
+  });
+}, intersectionOptions);
