@@ -37,6 +37,15 @@ function generateMediaElement(media, isExtraMedia) {
   if (contentType.match("image")) {
     const mediaElement = document.createElement("img");
     mediaElement.setAttribute(isExtraMedia ? "src" : "data-src", url);
+
+    // prevent right click / dragging
+    mediaElement.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+    mediaElement.ondragstart = function () {
+      return false;
+    };
+
     return mediaElement;
   }
   if (contentType.match("video")) {
@@ -47,6 +56,14 @@ function generateMediaElement(media, isExtraMedia) {
     mediaElement.playsInline = true;
     mediaElement.loop = true;
     mediaElement.setAttribute("muted", "");
+
+    // prevent right click / dragging
+    mediaElement.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+    mediaElement.ondragstart = function () {
+      return false;
+    };
 
     return mediaElement;
   }

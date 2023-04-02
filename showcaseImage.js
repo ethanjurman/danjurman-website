@@ -73,7 +73,9 @@ function showcaseImage(artTile) {
       <p style="margin-top: 2em;"><i>${artTile.getAttribute(
         "data-publication"
       )}</i></p>
-      <showcase-back-button onclick="goBack()">back</showcase-back-button>
+      <showcase-back-button onclick="goBack()">
+        <img src="./back-pointing.svg" alt="back" />
+      </showcase-back-button>
     </showcase-description-slider>
   `;
 

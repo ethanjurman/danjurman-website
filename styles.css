@@ -51,11 +51,11 @@ showcase-back-button {
   font-weight: 700;
   color: #808080;
   transition: all 0.25s;
-  padding-top: 6em;
+  padding-top: 1em;
 }
 
-showcase-back-button:hover {
-  color: black;
+showcase-back-button > img {
+  height: 1.7em;
 }
 
 @media screen and (max-width: 1000px) {
