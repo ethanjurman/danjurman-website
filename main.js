@@ -36,12 +36,12 @@ function generateMediaElement(media) {
   const { contentType, url } = media.fields.file;
   if (contentType.match("image")) {
     const mediaElement = document.createElement("img");
-    // mediaElement.src = url;
+    mediaElement.setAttribute("src", url);
     return mediaElement;
   }
   if (contentType.match("video")) {
     const mediaElement = document.createElement("video");
-    // mediaElement.src = url;
+    mediaElement.setAttribute("src", url);
     mediaElement.controls = false;
     mediaElement.autoplay = true;
     mediaElement.playsInline = true;
@@ -76,7 +76,6 @@ function generateArtTile(artTile) {
   artTileElement.setAttribute("data-hover-title", hoverTitle || title);
   artTileElement.setAttribute("data-publication", publication);
   artTileElement.setAttribute("data-description", description || "");
-  artTileElement.setAttribute("data-src", media.fields.file.url);
   const mediaElement = generateMediaElement(media);
   artTileElement.innerHTML = `
 		${mediaElement.outerHTML}
@@ -153,8 +152,14 @@ const intersectionObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       intersectionObserver.unobserve(entry.target);
-      const srcUrl = entry.target.getAttribute("data-src");
-      entry.target.firstElementChild.setAttribute("src", srcUrl);
+      const mediaElements = [
+        ...entry.target.querySelectorAll("img"),
+        ...entry.target.querySelectorAll("video"),
+      ];
+      mediaElements.forEach((mediaElement) => {
+        // const srcUrl = mediaElement.getAttribute("data-src");
+        // mediaElement.setAttribute("src", srcUrl);
+      });
     }
   });
 }, intersectionOptions);
