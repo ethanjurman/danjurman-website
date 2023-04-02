@@ -308,6 +308,10 @@ about-links > a > img {
   margin: 0.5em;
 }
 
+back-button > a > img {
+  height: 1.7em;
+}
+
 /* desktop mode */
 @media screen and (min-width: 800px) {
   about-extras > *:first-child {

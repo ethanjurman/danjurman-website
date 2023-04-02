@@ -37,7 +37,9 @@ function generateAboutBlock(aboutEntry) {
       <about-press>${aboutDescriptionPress}</about-press>
     </about-extras>
     <back-button>
-      <a href="/">< back to work</a>
+      <a href="/">
+        <img src="./back-pointing.svg" alt="back" />
+      </a>
     </back-button>
   `;
   document.querySelector("about-block").appendChild(aboutElement);
