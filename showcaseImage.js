@@ -67,7 +67,7 @@ function showcaseImage(artTile) {
   showcaseDescription.innerHTML = `
     <showcase-description-slider>
       <h2>${artTile.getAttribute("data-title")}</h2>
-      <p style="margin-top: 2.5em;">${artTile.getAttribute(
+      <p style="margin-top: 2em;">${artTile.getAttribute(
         "data-description"
       )}</p>
       <p style="margin-top: 2em;"><i>${artTile.getAttribute(
