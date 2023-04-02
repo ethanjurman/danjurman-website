@@ -5,6 +5,12 @@ body {
   font-family: "Courier Prime", monospace;
 }
 
+p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 showcase-tile {
   display: flex;
   margin: 2em;
