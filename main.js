@@ -28,7 +28,7 @@ client
   .catch(console.error);
 
 // function to generate a video or image block, used for art-tiles
-function generateMediaElement(media) {
+function generateMediaElement(media, isExtraMedia) {
   if (!media?.fields?.file) {
     console.warn("no file associated with media!", media);
     return null;
@@ -36,12 +36,12 @@ function generateMediaElement(media) {
   const { contentType, url } = media.fields.file;
   if (contentType.match("image")) {
     const mediaElement = document.createElement("img");
-    mediaElement.setAttribute("src", url);
+    mediaElement.setAttribute(isExtraMedia ? "src" : "data-src", url);
     return mediaElement;
   }
   if (contentType.match("video")) {
     const mediaElement = document.createElement("video");
-    mediaElement.setAttribute("src", url);
+    mediaElement.setAttribute(isExtraMedia ? "src" : "data-src", url);
     mediaElement.controls = false;
     mediaElement.autoplay = true;
     mediaElement.playsInline = true;
@@ -157,8 +157,10 @@ const intersectionObserver = new IntersectionObserver((entries) => {
         ...entry.target.querySelectorAll("video"),
       ];
       mediaElements.forEach((mediaElement) => {
-        // const srcUrl = mediaElement.getAttribute("data-src");
-        // mediaElement.setAttribute("src", srcUrl);
+        const srcUrl = mediaElement.getAttribute("data-src");
+        if (srcUrl) {
+          mediaElement.setAttribute("src", srcUrl);
+        }
       });
     }
   });

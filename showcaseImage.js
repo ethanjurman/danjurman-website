@@ -39,7 +39,7 @@ function getExtraMedia(artTile) {
     (item) => item.fields.title === artTile.getAttribute("data-title")
   ).fields.extraMedia;
   if (extraMediaArray) {
-    return extraMediaArray.map(generateMediaElement);
+    return extraMediaArray.map((media) => generateMediaElement(media, true));
   }
   return [];
 }
