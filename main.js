@@ -1,10 +1,3 @@
-/* snippet from contentful */
-const client = contentful.createClient({
-  space: "xi70tbeq36e3",
-  environment: "master", // defaults to 'master' if not set
-  accessToken: "if9Vw15EoyMc4a-Js1-gztNYSIwTnPnEsE7OQaZEJoM",
-});
-
 const MAX_COLUMNS = 3;
 
 let artTileItems = [];
