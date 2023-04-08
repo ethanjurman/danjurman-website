@@ -93,10 +93,15 @@ function generateArtTile(artTile) {
 		<art-publication>${publication}</art-publication>
 	`;
 
-  // click action to make an image (and really, the entire column) larger
+  // click action to showcase an image
   artTileElement.onclick = () => {
     showcaseImage(artTileElement);
   };
+  artTileElement.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      showcaseImage(artTileElement);
+    }
+  });
 
   // disable right click on art-tiles
   artTileElement.addEventListener("contextmenu", (event) => {
