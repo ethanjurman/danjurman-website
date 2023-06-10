@@ -30,7 +30,8 @@ showcase-image > art-tile {
   justify-content: center;
 }
 
-showcase-image > img {
+showcase-image > img,
+showcase-image > video {
   margin-top: 4em;
 }
 
