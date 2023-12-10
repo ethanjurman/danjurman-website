@@ -13,8 +13,8 @@ function generateAboutBlock(aboutEntry) {
   const { media, content, getInTouch, clients, press } = aboutEntry.fields;
 
   const aboutVideoSrc = media.fields.file.url;
-  const videoElement = aboutElement.querySelector("video-container video");
-  videoElement.src = aboutVideoSrc;
+  const videoElement = aboutElement.querySelector("video-container gif-video");
+  videoElement.setAttribute("src", aboutVideoSrc);
 
   const aboutDescriptionContentHtml = documentToHtmlString(content);
   const aboutDescription = aboutElement.querySelector("about-description");

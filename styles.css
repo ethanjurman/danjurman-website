@@ -31,7 +31,7 @@ showcase-image > art-tile {
 }
 
 showcase-image > img,
-showcase-image > video {
+showcase-image > gif-video {
   margin-top: 4em;
 }
 
@@ -183,7 +183,7 @@ art-tile {
   position: relative;
 }
 
-art-tile > video,
+art-tile > gif-video,
 art-tile > img {
   width: 100%;
   max-width: 100%;
@@ -268,10 +268,6 @@ about-content {
   flex-wrap: wrap;
 }
 
-video-container > video {
-  width: 100%;
-  margin-top: 1em;
-}
 video-container {
   display: block;
   width: 100%;

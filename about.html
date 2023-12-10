@@ -31,6 +31,12 @@
 
     <title>Daniel Jurman</title>
     <meta name="description" content="" />
+
+    <script
+      defer
+      src="https://unpkg.com/tram-lite@5/output/import-components.js"
+      tl-components="./components/gif-video.html"
+    ></script>
   </head>
   <body>
     <div class="nav">
@@ -47,13 +53,7 @@
     <about-block>
       <about-content>
         <video-container>
-          <video
-            id="about-video"
-            playsinline=""
-            autoplay=""
-            loop=""
-            muted=""
-          ></video>
+          <gif-video id="about-video"></gif-video>
         </video-container>
         <about-description></about-description>
         <about-extras>
