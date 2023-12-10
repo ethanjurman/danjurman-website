@@ -86,10 +86,6 @@ showcase-back-button > img {
   }
 }
 
-art-title {
-  font-family: "Archivo Black", sans-serif;
-}
-
 /* Component Styles */
 body {
   margin: 0px;
@@ -146,17 +142,6 @@ header-spacer {
   padding-bottom: 60px;
 }
 
-/* don't display titles unless they are on the zoomed in element */
-art-title,
-art-publication {
-  display: none;
-}
-
-art-tile[zoomedin] art-title,
-art-tile[zoomedin] art-publication {
-  display: block;
-}
-
 columns-container {
   display: grid;
   transition: 1s;
@@ -175,20 +160,6 @@ tile-column {
 }
 
 /* main page */
-
-art-tile {
-  margin: 15px;
-  cursor: pointer;
-  transition: all 1s;
-  position: relative;
-}
-
-art-tile > gif-video,
-art-tile > img {
-  width: 100%;
-  max-width: 100%;
-  /* min-height: 500px; */
-}
 
 tile-column art-tile::before {
   content: "";
@@ -232,15 +203,6 @@ tile-column art-tile:hover::after {
   height: 250px;
   max-width: 100%;
   margin-bottom: 4px;
-}
-
-art-title {
-  margin: 6px 0px 4px 0px;
-}
-
-art-publication {
-  font-size: 14px;
-  font-style: italic;
 }
 
 ul {

@@ -73,29 +73,7 @@ function generateArtTile(artTile) {
   artTileElement.setAttribute("data-publication", publication);
   artTileElement.setAttribute("data-description", description || "");
   const mediaElement = generateMediaElement(media);
-  artTileElement.innerHTML = `
-		${mediaElement.outerHTML}
-		<art-title>${title}</art-title>
-		<art-publication>${publication}</art-publication>
-	`;
-
-  // click action to showcase an image
-  artTileElement.onclick = () => {
-    showcaseImage(artTileElement);
-  };
-  artTileElement.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      showcaseImage(artTileElement);
-    }
-  });
-
-  // disable right click on art-tiles
-  artTileElement.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-  });
-  artTileElement.ondragstart = function () {
-    return false;
-  };
+  artTileElement.append(mediaElement);
 
   artTileElements.push(artTileElement);
   intersectionObserver.observe(artTileElement);

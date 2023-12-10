@@ -1,0 +1,64 @@
+<art-tile>
+  <!-- styles -->
+  <style>
+    :host {
+      margin: 15px;
+      cursor: pointer;
+      transition: all 1s;
+      position: relative;
+    }
+
+    /* don't display titles unless they are on the zoomed in element */
+    art-title,
+    art-publication {
+      display: none;
+    }
+
+    :host([zoomedin]) art-title,
+    :host([zoomedin]) art-publication {
+      display: block;
+    }
+
+    art-title {
+      font-family: "Archivo Black", sans-serif;
+      margin: 6px 0px 4px 0px;
+    }
+
+    art-publication {
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    ::slotted(gif-video),
+    ::slotted(img) {
+      width: 100%;
+      max-width: 100%;
+    }
+  </style>
+
+  <!-- content -->
+  <slot></slot>
+  <art-title>${'title'}</art-title>
+  <art-publication>${'publication'}</art-publication>
+
+  <!-- event listeners -->
+  <script tl-effect>
+    this.addEventListener("click", () => {
+      showcaseImage(this);
+    });
+
+    this.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        showcaseImage(this);
+      }
+    });
+
+    // disable right click on art-tiles
+    this.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+    this.ondragstart = function () {
+      return false;
+    };
+  </script>
+</art-tile>
