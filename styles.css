@@ -51,20 +51,6 @@ showcase-description > * > h2 {
   font-weight: 400;
 }
 
-showcase-back-button {
-  cursor: pointer;
-  display: none;
-  font-size: 0.9em;
-  font-weight: 700;
-  color: #808080;
-  transition: all 0.25s;
-  padding-top: 1em;
-}
-
-showcase-back-button > img {
-  height: 1.7em;
-}
-
 @media screen and (max-width: 1000px) {
   showcase-tile {
     margin-top: 4em;
@@ -79,10 +65,6 @@ showcase-back-button > img {
 
   showcase-description > h2 {
     margin-top: 1.8em;
-  }
-
-  showcase-back-button {
-    display: inline-block;
   }
 }
 
@@ -265,10 +247,6 @@ about-links > a > img {
   max-width: 2em;
   max-height: 2em;
   margin: 0.5em;
-}
-
-back-button > a > img {
-  height: 1.7em;
 }
 
 /* desktop mode */
