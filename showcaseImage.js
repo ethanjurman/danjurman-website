@@ -16,14 +16,7 @@ function showcaseImageStart() {
   // do not show showcase at the top of the page
   if (!window.location.hash) {
     const showcaseTile = document.querySelector("showcase-tile");
-    showcaseTile.style.display = "none";
-    showcaseTile.innerHTML = `
-      <showcase-description>
-        <showcase-description-slider>
-        </showcase-description-slider>
-      </showcase-description>
-      <showcase-image></showcase-image>
-    `;
+    // clear content? remove attributes?
 
     processArtTiles();
   }
@@ -48,31 +41,24 @@ function showcaseImage(artTile) {
 
   // append this art tile to the top showcase tile (moving it from where it was in the grid)
   const showcaseTile = document.querySelector("showcase-tile");
-  showcaseTile.style.display = "";
-  showcaseTile.querySelector("showcase-image").innerHTML = "";
-  showcaseTile.querySelector("showcase-image").appendChild(artTile);
+  showcaseTile.setAttribute("art-title", artTile.getAttribute("data-title"));
+
+  const showcaseImages = [];
+  showcaseImages.push(artTile);
   // append the other images
-  getExtraMedia(artTile).forEach((img) =>
-    showcaseTile.querySelector("showcase-image").appendChild(img)
-  );
+  getExtraMedia(artTile).forEach((img) => showcaseImages.push(img));
 
-  const showcaseDescription = showcaseTile.querySelector(
-    "showcase-description"
-  );
-  showcaseDescription.innerHTML = `
-    <showcase-description-slider>
-      <h2>${artTile.getAttribute("data-title")}</h2>
-      <p style="margin-top: 2em; line-height: 1.3em;">${artTile.getAttribute(
-        "data-description"
-      )}</p>
-      <p style="margin-top: 2em;"><i>${artTile.getAttribute(
-        "data-publication"
-      )}</i></p>
-      <back-link></back-link>
-    </showcase-description-slider>
-  `;
+  // replace all the existing images (including extras) with the new set of images
+  showcaseTile.replaceChildren(...showcaseImages);
 
-  // scrollTo({ top: 0, behavior: "smooth" });
+  showcaseTile.setAttribute(
+    "art-description",
+    artTile.getAttribute("data-description")
+  );
+  showcaseTile.setAttribute(
+    "art-publication",
+    artTile.getAttribute("data-publication")
+  );
 }
 
 window.onpopstate = (event) => {
