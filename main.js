@@ -42,8 +42,22 @@ function generateMediaElement(media, isExtraMedia) {
     return mediaElement;
   }
   if (contentType.match("video")) {
-    const mediaElement = document.createElement("gif-video");
+    const mediaElement = document.createElement("video");
     mediaElement.setAttribute(isExtraMedia ? "src" : "data-src", url);
+    mediaElement.controls = false;
+    mediaElement.autoplay = true;
+    mediaElement.playsInline = true;
+    mediaElement.loop = true;
+    mediaElement.setAttribute("muted", "");
+
+    // prevent right click / dragging
+    mediaElement.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+    mediaElement.ondragstart = function () {
+      return false;
+    };
+
     return mediaElement;
   }
 
@@ -73,7 +87,29 @@ function generateArtTile(artTile) {
   artTileElement.setAttribute("data-publication", publication);
   artTileElement.setAttribute("data-description", description || "");
   const mediaElement = generateMediaElement(media);
-  artTileElement.append(mediaElement);
+  artTileElement.innerHTML = `
+		${mediaElement.outerHTML}
+		<art-title>${title}</art-title>
+		<art-publication>${publication}</art-publication>
+	`;
+
+  // click action to showcase an image
+  artTileElement.onclick = () => {
+    showcaseImage(artTileElement);
+  };
+  artTileElement.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      showcaseImage(artTileElement);
+    }
+  });
+
+  // disable right click on art-tiles
+  artTileElement.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+  });
+  artTileElement.ondragstart = function () {
+    return false;
+  };
 
   artTileElements.push(artTileElement);
   intersectionObserver.observe(artTileElement);
@@ -133,7 +169,7 @@ const intersectionObserver = new IntersectionObserver((entries) => {
       intersectionObserver.unobserve(entry.target);
       const mediaElements = [
         ...entry.target.querySelectorAll("img"),
-        ...entry.target.querySelectorAll("gif-video"),
+        ...entry.target.querySelectorAll("video"),
       ];
       mediaElements.forEach((mediaElement) => {
         const srcUrl = mediaElement.getAttribute("data-src");

@@ -34,12 +34,6 @@
 
     <title>Daniel Jurman</title>
     <meta name="description" content="" />
-
-    <script
-      defer
-      src="https://unpkg.com/tram-lite@5/output/import-components.js"
-      tl-components="./components/gif-video.html ./components/art-tile.html ./components/back-link.html ./components/showcase-tile.html"
-    ></script>
   </head>
   <body>
     <div class="nav">
@@ -54,8 +48,17 @@
     </div>
 
     <header-spacer></header-spacer>
-    <showcase-tile></showcase-tile>
-    <columns-container></columns-container>
+    <showcase-tile>
+      <showcase-description>
+        <showcase-description-slider>
+          <showcase-back-button style="display: none"
+            >back</showcase-back-button
+          >
+        </showcase-description-slider>
+      </showcase-description>
+      <showcase-image></showcase-image>
+    </showcase-tile>
+    <columns-container> </columns-container>
 
     <footer>All Work © Daniel Jurman 2023</footer>
   </body>

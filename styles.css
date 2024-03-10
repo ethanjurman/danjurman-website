@@ -5,6 +5,91 @@ body {
   font-family: "Courier Prime", monospace;
 }
 
+p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+
+showcase-tile {
+  display: flex;
+  margin: 2em;
+  justify-content: space-around;
+  margin-top: 9em;
+  margin-bottom: 16em;
+}
+
+showcase-image {
+  display: flex;
+  flex-direction: column;
+  min-width: 60%;
+}
+showcase-image > art-tile {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+showcase-image > img,
+showcase-image > video {
+  margin-top: 4em;
+}
+
+showcase-description {
+  margin-right: 10%;
+  margin-left: 20px;
+}
+
+showcase-description-slider {
+  position: sticky;
+  top: 12.75em;
+}
+
+showcase-description > * > h2 {
+  margin-top: 0px;
+  line-height: 1em;
+  font-weight: 400;
+}
+
+showcase-back-button {
+  cursor: pointer;
+  display: none;
+  font-size: 0.9em;
+  font-weight: 700;
+  color: #808080;
+  transition: all 0.25s;
+  padding-top: 1em;
+}
+
+showcase-back-button > img {
+  height: 1.7em;
+}
+
+@media screen and (max-width: 1000px) {
+  showcase-tile {
+    margin-top: 4em;
+    flex-direction: column-reverse;
+  }
+
+  showcase-description {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 2em;
+  }
+
+  showcase-description > h2 {
+    margin-top: 1.8em;
+  }
+
+  showcase-back-button {
+    display: inline-block;
+  }
+}
+
+art-title {
+  font-family: "Archivo Black", sans-serif;
+}
+
 /* Component Styles */
 body {
   margin: 0px;
@@ -61,6 +146,17 @@ header-spacer {
   padding-bottom: 60px;
 }
 
+/* don't display titles unless they are on the zoomed in element */
+art-title,
+art-publication {
+  display: none;
+}
+
+art-tile[zoomedin] art-title,
+art-tile[zoomedin] art-publication {
+  display: block;
+}
+
 columns-container {
   display: grid;
   transition: 1s;
@@ -79,6 +175,20 @@ tile-column {
 }
 
 /* main page */
+
+art-tile {
+  margin: 15px;
+  cursor: pointer;
+  transition: all 1s;
+  position: relative;
+}
+
+art-tile > video,
+art-tile > img {
+  width: 100%;
+  max-width: 100%;
+  /* min-height: 500px; */
+}
 
 tile-column art-tile::before {
   content: "";
@@ -124,6 +234,15 @@ tile-column art-tile:hover::after {
   margin-bottom: 4px;
 }
 
+art-title {
+  margin: 6px 0px 4px 0px;
+}
+
+art-publication {
+  font-size: 14px;
+  font-style: italic;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -149,6 +268,10 @@ about-content {
   flex-wrap: wrap;
 }
 
+video-container > video {
+  width: 100%;
+  margin-top: 1em;
+}
 video-container {
   display: block;
   width: 100%;
@@ -184,6 +307,10 @@ about-links > a > img {
   max-width: 2em;
   max-height: 2em;
   margin: 0.5em;
+}
+
+back-button > a > img {
+  height: 1.7em;
 }
 
 /* desktop mode */

@@ -16,10 +16,22 @@ function showcaseImageStart() {
   // do not show showcase at the top of the page
   if (!window.location.hash) {
     const showcaseTile = document.querySelector("showcase-tile");
-    // clear content? remove attributes?
+    showcaseTile.style.display = "none";
+    showcaseTile.innerHTML = `
+      <showcase-description>
+        <showcase-description-slider>
+          <showcase-back-button style="display:none">back</showcase-back-button>
+        </showcase-description-slider>
+      </showcase-description>
+      <showcase-image></showcase-image>
+    `;
 
     processArtTiles();
   }
+}
+
+function goBack() {
+  history.back();
 }
 
 function getExtraMedia(artTile) {
@@ -41,24 +53,33 @@ function showcaseImage(artTile) {
 
   // append this art tile to the top showcase tile (moving it from where it was in the grid)
   const showcaseTile = document.querySelector("showcase-tile");
-  showcaseTile.setAttribute("art-title", artTile.getAttribute("data-title"));
-
-  const showcaseImages = [];
-  showcaseImages.push(artTile);
+  showcaseTile.style.display = "";
+  showcaseTile.querySelector("showcase-image").innerHTML = "";
+  showcaseTile.querySelector("showcase-image").appendChild(artTile);
   // append the other images
-  getExtraMedia(artTile).forEach((img) => showcaseImages.push(img));
-
-  // replace all the existing images (including extras) with the new set of images
-  showcaseTile.replaceChildren(...showcaseImages);
-
-  showcaseTile.setAttribute(
-    "art-description",
-    artTile.getAttribute("data-description")
+  getExtraMedia(artTile).forEach((img) =>
+    showcaseTile.querySelector("showcase-image").appendChild(img)
   );
-  showcaseTile.setAttribute(
-    "art-publication",
-    artTile.getAttribute("data-publication")
+
+  const showcaseDescription = showcaseTile.querySelector(
+    "showcase-description"
   );
+  showcaseDescription.innerHTML = `
+    <showcase-description-slider>
+      <h2>${artTile.getAttribute("data-title")}</h2>
+      <p style="margin-top: 2em; line-height: 1.3em;">${artTile.getAttribute(
+        "data-description"
+      )}</p>
+      <p style="margin-top: 2em;"><i>${artTile.getAttribute(
+        "data-publication"
+      )}</i></p>
+      <showcase-back-button onclick="goBack()">
+        <img src="./back-pointing.svg" alt="back" />
+      </showcase-back-button>
+    </showcase-description-slider>
+  `;
+
+  // scrollTo({ top: 0, behavior: "smooth" });
 }
 
 window.onpopstate = (event) => {
