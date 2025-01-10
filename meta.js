@@ -12,5 +12,7 @@ client
     // set the description of the page based on contentful data
     const metaDescription = document.querySelector('meta[name="description"]');
     metaDescription.setAttribute("content", entry.fields.searchResultSnippet);
+
+    window.posterSrc = entry.fields.videoPlaceholder?.fields?.file?.url;
   })
   .catch(console.error);

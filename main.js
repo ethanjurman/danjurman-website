@@ -49,7 +49,9 @@ function generateMediaElement(media, isExtraMedia) {
     mediaElement.playsInline = true;
     mediaElement.loop = true;
     mediaElement.muted = true;
-    // mediaElement.setAttribute("poster", "./loading.gif");
+    if (window.posterSrc) {
+      mediaElement.setAttribute("poster", window.posterSrc);
+    }
 
     // prevent right click / dragging
     mediaElement.addEventListener("contextmenu", (event) => {
