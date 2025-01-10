@@ -48,7 +48,8 @@ function generateMediaElement(media, isExtraMedia) {
     mediaElement.autoplay = true;
     mediaElement.playsInline = true;
     mediaElement.loop = true;
-    mediaElement.setAttribute("muted", "");
+    mediaElement.muted = true;
+    // mediaElement.setAttribute("poster", "./loading.gif");
 
     // prevent right click / dragging
     mediaElement.addEventListener("contextmenu", (event) => {
@@ -175,6 +176,7 @@ const intersectionObserver = new IntersectionObserver((entries) => {
         const srcUrl = mediaElement.getAttribute("data-src");
         if (srcUrl) {
           mediaElement.setAttribute("src", srcUrl);
+          mediaElement.muted = true;
         }
       });
     }
