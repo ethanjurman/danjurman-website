@@ -81,10 +81,14 @@ function processArtTiles() {
 
 // function to generate a single art tile, and save it to our list of artTileElements
 function generateArtTile(artTile) {
-  const { title, media, publication, description, hoverTitle } = artTile.fields;
+  const { title, media, publication, description, hoverTitle, hidden } =
+    artTile.fields;
   // create tile
   const artTileElement = document.createElement("art-tile");
   artTileElement.tabIndex = 0;
+  if (hidden) {
+    artTileElement.setAttribute("data-hidden", hidden);
+  }
   artTileElement.setAttribute("data-title", title);
   artTileElement.setAttribute("data-hover-title", hoverTitle || title);
   artTileElement.setAttribute("data-publication", publication);
