@@ -20,18 +20,26 @@ function generateAboutBlock(aboutEntry) {
   const aboutDescription = aboutElement.querySelector("about-description");
   aboutDescription.innerHTML = aboutDescriptionContentHtml;
 
-  // hard-coded (for icons)
-  // const aboutDescriptionGetInTouch = documentToHtmlString(getInTouch);
-  // const getInTouchElement = aboutElement.querySelector("about-get-in-touch");
-  // getInTouchElement.innerHTML = aboutDescriptionGetInTouch;
+  // make each link open in new tab
+  aboutDescription.querySelectorAll("a").forEach((link) => {
+    link.target = "_blank";
+  });
 
   const aboutDescriptionClients = documentToHtmlString(clients);
   const clientsElement = aboutElement.querySelector("about-clients");
   clientsElement.innerHTML = aboutDescriptionClients;
 
+  clientsElement.querySelectorAll("a").forEach((link) => {
+    link.target = "_blank";
+  });
+
   const aboutDescriptionPress = documentToHtmlString(press);
   const pressELement = aboutElement.querySelector("about-press");
   pressELement.innerHTML = aboutDescriptionPress;
+
+  pressELement.querySelectorAll("a").forEach((link) => {
+    link.target = "_blank";
+  });
 }
 
 footer.innerText = `All Work © Daniel Jurman ${new Date().getFullYear()}`;
