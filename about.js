@@ -32,3 +32,5 @@ function generateAboutBlock(aboutEntry) {
   const pressELement = aboutElement.querySelector("about-press");
   pressELement.innerHTML = aboutDescriptionPress;
 }
+
+footer.innerText = `All Work © Daniel Jurman ${new Date().getFullYear()}`;

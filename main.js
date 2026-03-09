@@ -188,3 +188,5 @@ const intersectionObserver = new IntersectionObserver((entries) => {
     }
   });
 }, intersectionOptions);
+
+footer.innerText = `All Work © Daniel Jurman ${new Date().getFullYear()}`;
