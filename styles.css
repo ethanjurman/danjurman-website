@@ -289,6 +289,14 @@ about-right-panel {
   flex: 1;
 }
 
+about-right-panel a {
+  opacity: 0.6;
+}
+
+about-right-panel a:hover {
+  opacity: 1;
+}
+
 about-description {
   flex: 1;
   display: block;
