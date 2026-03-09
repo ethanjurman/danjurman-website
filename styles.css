@@ -339,7 +339,7 @@ back-button > a > img {
     max-width: 570px;
   }
 
-  video {
+  video-container video {
     height: calc(100vh - 175px);
   }
 
