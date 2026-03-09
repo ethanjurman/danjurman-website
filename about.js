@@ -42,4 +42,5 @@ function generateAboutBlock(aboutEntry) {
   });
 }
 
-footer.innerText = `All Work © Daniel Jurman ${new Date().getFullYear()}`;
+// about page has no footer, but if we add it back, uncomment this
+// footer.innerText = `All Work © Daniel Jurman ${new Date().getFullYear()}`;
