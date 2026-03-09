@@ -312,7 +312,6 @@ about-extras {
 about-get-in-touch,
 about-clients,
 about-press {
-  border-top: 1px solid black;
   display: block;
 }
 
@@ -332,6 +331,7 @@ back-button > a > img {
 @media screen and (min-width: 800px) {
   about-right-panel {
     flex: 1;
+    max-width: 570px;
   }
 
   video {
@@ -371,6 +371,11 @@ a:has([icon]) {
 
 about-right-panel {
   margin-bottom: 80px;
+}
+
+about-right-panel hr {
+  margin: 2em 0;
+  border: 1px solid;
 }
 
 footer {
