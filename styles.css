@@ -271,8 +271,7 @@ about-content {
   display: flex;
   padding-top: 90px;
   margin: 20px auto;
-  width: calc(100% - 30px);
-  max-width: 1200px;
+  width: calc(100% - 70px);
   flex-wrap: wrap;
 }
 
@@ -283,6 +282,10 @@ video-container > video {
 video-container {
   display: block;
   width: 100%;
+}
+
+about-right-panel {
+  flex: 1;
 }
 
 about-description {
@@ -302,7 +305,14 @@ about-clients,
 about-press {
   border-top: 1px solid black;
   display: block;
-  padding-bottom: 2em;
+}
+
+about-clients :not(:first-child) {
+  margin: 0em;
+}
+
+about-clients :last-child {
+  margin-block-end: 1em;
 }
 
 about-links {
@@ -323,6 +333,11 @@ back-button > a > img {
 
 /* desktop mode */
 @media screen and (min-width: 800px) {
+  about-right-panel {
+    flex: 1;
+    max-width: 35%;
+  }
+
   about-extras > *:first-child {
     margin-left: 0px;
     margin-right: 28px;
@@ -338,7 +353,7 @@ back-button > a > img {
   video-container {
     flex: 1 !important;
   }
-  about-description {
+  about-right-panel {
     padding-left: 80px;
   }
   about-extras {

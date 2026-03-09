@@ -21,18 +21,14 @@ function generateAboutBlock(aboutEntry) {
   aboutDescription.innerHTML = aboutDescriptionContentHtml;
 
   const aboutDescriptionGetInTouch = documentToHtmlString(getInTouch);
-  const getInTouchElement = aboutElement.querySelector(
-    "about-extras about-get-in-touch"
-  );
+  const getInTouchElement = aboutElement.querySelector("about-get-in-touch");
   getInTouchElement.innerHTML = aboutDescriptionGetInTouch;
 
   const aboutDescriptionClients = documentToHtmlString(clients);
-  const clientsElement = aboutElement.querySelector(
-    "about-extras about-clients"
-  );
+  const clientsElement = aboutElement.querySelector("about-clients");
   clientsElement.innerHTML = aboutDescriptionClients;
 
   const aboutDescriptionPress = documentToHtmlString(press);
-  const pressELement = aboutElement.querySelector("about-extras about-press");
+  const pressELement = aboutElement.querySelector("about-press");
   pressELement.innerHTML = aboutDescriptionPress;
 }
