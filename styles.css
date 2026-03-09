@@ -131,9 +131,14 @@ a {
 }
 
 .nav-links {
-  display: inline-block;
+  display: flex;
   padding-top: 8px;
   font-size: 14;
+  gap: 1.25em;
+}
+
+.nav-links a:hover {
+  border-bottom: 1px solid;
 }
 
 .active-link {
