@@ -36,10 +36,10 @@ showcase-image > video {
 }
 
 showcase-description {
-  /* margin-right: 10%; */
-  /* margin-left: 20px; */
-  margin-left: 10%;
-  margin-right: 20px;
+  margin-right: 10%;
+  margin-left: 20px;
+  /* margin-left: 10%; */
+  /* margin-right: 20px; */
 }
 
 showcase-description-slider {
