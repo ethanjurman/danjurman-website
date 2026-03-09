@@ -20,9 +20,10 @@ function generateAboutBlock(aboutEntry) {
   const aboutDescription = aboutElement.querySelector("about-description");
   aboutDescription.innerHTML = aboutDescriptionContentHtml;
 
-  const aboutDescriptionGetInTouch = documentToHtmlString(getInTouch);
-  const getInTouchElement = aboutElement.querySelector("about-get-in-touch");
-  getInTouchElement.innerHTML = aboutDescriptionGetInTouch;
+  // hard-coded (for icons)
+  // const aboutDescriptionGetInTouch = documentToHtmlString(getInTouch);
+  // const getInTouchElement = aboutElement.querySelector("about-get-in-touch");
+  // getInTouchElement.innerHTML = aboutDescriptionGetInTouch;
 
   const aboutDescriptionClients = documentToHtmlString(clients);
   const clientsElement = aboutElement.querySelector("about-clients");

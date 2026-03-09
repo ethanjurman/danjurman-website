@@ -316,18 +316,6 @@ about-clients :last-child {
   margin-block-end: 1em;
 }
 
-about-links {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2em;
-}
-
-about-links > a > img {
-  max-width: 2em;
-  max-height: 2em;
-  margin: 0.5em;
-}
-
 back-button > a > img {
   height: 1.7em;
 }
@@ -361,6 +349,20 @@ back-button > a > img {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
+
+img[icon] {
+  width: 1em;
+}
+
+a:has([icon]) {
+  display: flex;
+  align-content: center;
+  gap: 0.4em;
+}
+
+about-right-panel {
+  margin-bottom: 80px;
 }
 
 footer {
