@@ -276,12 +276,13 @@ about-content {
 }
 
 video-container > video {
-  width: 100%;
+  /* width: 100%; */
+  height: calc(100vh - 175px);
   margin-top: 1em;
 }
 video-container {
   display: block;
-  width: 100%;
+  /* width: 100%; */
 }
 
 about-right-panel {
@@ -335,7 +336,6 @@ back-button > a > img {
 @media screen and (min-width: 800px) {
   about-right-panel {
     flex: 1;
-    max-width: 35%;
   }
 
   about-extras > *:first-child {
@@ -350,11 +350,8 @@ back-button > a > img {
     margin: 0px 8px;
   }
 
-  video-container {
-    flex: 1 !important;
-  }
   about-right-panel {
-    padding-left: 80px;
+    padding-left: 35px;
   }
   about-extras {
     display: grid;
