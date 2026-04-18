@@ -142,11 +142,11 @@ a {
 }
 
 .nav-links a:hover {
-  border-bottom: 1px solid;
+  border-bottom: 3px solid;
 }
 
 .active-link {
-  border-bottom: 1px solid;
+  border-bottom: 3px solid;
 }
 
 header-spacer {
