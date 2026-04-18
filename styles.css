@@ -37,6 +37,7 @@ showcase-image > video {
 }
 
 showcase-description {
+  font-size: 18px;
   margin-right: auto;
   margin-left: 50px;
   max-width: 430px;
@@ -135,7 +136,7 @@ a {
 .nav-links {
   display: flex;
   padding-top: 8px;
-  font-size: 14;
+  font-size: 22px;
   gap: 1.25em;
 }
 
