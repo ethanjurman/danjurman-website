@@ -137,6 +137,7 @@ a {
   display: flex;
   padding-top: 8px;
   font-size: 22px;
+  font-weight: 700;
   gap: 1.25em;
 }
 
@@ -146,7 +147,6 @@ a {
 
 .active-link {
   border-bottom: 1px solid;
-  font-weight: 700;
 }
 
 header-spacer {
