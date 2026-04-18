@@ -18,12 +18,12 @@ function showcaseImageStart() {
     const showcaseTile = document.querySelector("showcase-tile");
     showcaseTile.style.display = "none";
     showcaseTile.innerHTML = `
+      <showcase-image></showcase-image>
       <showcase-description>
         <showcase-description-slider>
           <showcase-back-button style="display:none">back</showcase-back-button>
         </showcase-description-slider>
       </showcase-description>
-      <showcase-image></showcase-image>
     `;
 
     processArtTiles();
@@ -36,7 +36,7 @@ function goBack() {
 
 function getExtraMedia(artTile) {
   const extraMediaArray = artTileItems.find(
-    (item) => item.fields.title === artTile.getAttribute("data-title")
+    (item) => item.fields.title === artTile.getAttribute("data-title"),
   ).fields.extraMedia;
   if (extraMediaArray) {
     return extraMediaArray.map((media) => generateMediaElement(media, true));
@@ -58,20 +58,20 @@ function showcaseImage(artTile) {
   showcaseTile.querySelector("showcase-image").appendChild(artTile);
   // append the other images
   getExtraMedia(artTile).forEach((img) =>
-    showcaseTile.querySelector("showcase-image").appendChild(img)
+    showcaseTile.querySelector("showcase-image").appendChild(img),
   );
 
   const showcaseDescription = showcaseTile.querySelector(
-    "showcase-description"
+    "showcase-description",
   );
   showcaseDescription.innerHTML = `
     <showcase-description-slider>
       <h2>${artTile.getAttribute("data-title")}</h2>
       <p style="margin-top: 2em; line-height: 1.3em;">${artTile.getAttribute(
-        "data-description"
+        "data-description",
       )}</p>
       <p style="margin-top: 2em;"><i>${artTile.getAttribute(
-        "data-publication"
+        "data-publication",
       )}</i></p>
       <showcase-back-button onclick="goBack()">
         <img src="./back-pointing.svg" alt="back" />

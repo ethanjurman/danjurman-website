@@ -37,8 +37,9 @@ showcase-image > video {
 }
 
 showcase-description {
-  margin-right: 350px;
+  margin-right: auto;
   margin-left: 50px;
+  max-width: 430px;
 }
 
 showcase-description-slider {
