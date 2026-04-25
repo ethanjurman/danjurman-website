@@ -16,8 +16,10 @@ showcase-tile {
   display: flex;
   margin: 2em;
   justify-content: space-around;
-  margin-top: 9em;
-  margin-bottom: 16em;
+  margin-top: 4em;
+  gap: 2em;
+  border-bottom: 1px solid #aaaaaa;
+  padding-bottom: 3em;
 }
 
 showcase-image {
@@ -45,27 +47,13 @@ showcase-description {
 
 showcase-description-slider {
   position: sticky;
-  top: 12.75em;
+  top: 86px; /* height of header */
 }
 
 showcase-description > * > h2 {
   margin-top: 0px;
   line-height: 1em;
   font-weight: 400;
-}
-
-showcase-back-button {
-  cursor: pointer;
-  display: none;
-  font-size: 0.9em;
-  font-weight: 700;
-  color: #808080;
-  transition: all 0.25s;
-  padding-top: 1em;
-}
-
-showcase-back-button > img {
-  height: 1.7em;
 }
 
 @media screen and (max-width: 1000px) {
@@ -82,10 +70,6 @@ showcase-back-button > img {
 
   showcase-description > h2 {
     margin-top: 1.8em;
-  }
-
-  showcase-back-button {
-    display: inline-block;
   }
 }
 
